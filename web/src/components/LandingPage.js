@@ -1,20 +1,15 @@
 import '../style/LandingPage.css';
+import SignIn from "./signin/SignIn";
+import SignUp from "./signup/Signup";
 
 function LandingPage() {
   return (
     <div className="App">
       <header className="App-header">
         <p>
-          All Components here
+          <SignIn/>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Our Code Here
-        </a>
+        <p><SignUp/></p>
       </header>
     </div>
   );
