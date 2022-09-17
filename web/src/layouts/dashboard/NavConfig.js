@@ -27,8 +27,8 @@ const navConfig = [
     icon: getIcon('eva:shopping-bag-fill'),
   },
   {
-    title: 'request-space',
-    path: '/dashboard/request-space',
+    title: 'book-seat',
+    path: '/dashboard/book-seat',
     icon: getIcon('eva:shopping-bag-fill'),
   },
   {

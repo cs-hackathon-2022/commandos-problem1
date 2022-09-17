@@ -11,7 +11,7 @@ import Register from './pages/Register';
 import CreateTeam from './pages/CreateTeam';
 import DashboardApp from './pages/DashboardApp';
 import AllocateSpace from "./pages/AllocateSpace";
-import RequestSpace from "./pages/RequestSpace";
+import BookSeat from "./pages/BookSeat";
 
 // ----------------------------------------------------------------------
 
@@ -25,7 +25,7 @@ export default function Router() {
         { path: 'take-action', element: <TakeAction /> },
         { path: 'create-team', element: <CreateTeam /> },
         { path: 'allocate-space', element: <AllocateSpace /> },
-        { path: 'request-space', element: <RequestSpace /> },
+        { path: 'book-seat', element: <BookSeat /> },
         { path: 'login', element: <Login />},
         { path: 'register', element: <Register />},
       ],
