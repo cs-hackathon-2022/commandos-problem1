@@ -23,21 +23,18 @@ export default function Router() {
         { path: 'user', element: <User /> },
         { path: 'products', element: <Products /> },
         { path: 'blog', element: <Blog /> },
+        { path: 'login', element: <Login />},
+        { path: 'register', element: <Register />},
       ],
     },
-    {
-      path: 'login',
-      element: <Login />,
-    },
-    {
-      path: 'register',
-      element: <Register />,
-    },
+
     {
       path: '/',
       element: <LogoOnlyLayout />,
       children: [
         { path: '/', element: <Navigate to="/dashboard/app" /> },
+        { path: '/login', element: <Navigate to="/dashboard/login" /> },
+        { path: '/register', element: <Navigate to="/dashboard/register" /> },
         { path: '404', element: <NotFound /> },
         { path: '*', element: <Navigate to="/404" /> },
       ],
