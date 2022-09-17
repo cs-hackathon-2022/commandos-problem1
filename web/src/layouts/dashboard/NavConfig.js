@@ -12,19 +12,24 @@ const navConfig = [
     icon: getIcon('eva:pie-chart-2-fill'),
   },
   {
-    title: 'user',
-    path: '/dashboard/user',
+    title: 'take-action',
+    path: '/dashboard/take-action',
     icon: getIcon('eva:people-fill'),
   },
   {
-    title: 'product',
-    path: '/dashboard/products',
+    title: 'create-team',
+    path: '/dashboard/create-team',
     icon: getIcon('eva:shopping-bag-fill'),
   },
   {
-    title: 'blog',
-    path: '/dashboard/blog',
-    icon: getIcon('eva:file-text-fill'),
+    title: 'allocate-space',
+    path: '/dashboard/allocate-space',
+    icon: getIcon('eva:shopping-bag-fill'),
+  },
+  {
+    title: 'request-space',
+    path: '/dashboard/request-space',
+    icon: getIcon('eva:shopping-bag-fill'),
   },
   {
     title: 'login',
@@ -35,11 +40,6 @@ const navConfig = [
     title: 'register',
     path: '/register',
     icon: getIcon('eva:person-add-fill'),
-  },
-  {
-    title: 'Not found',
-    path: '/404',
-    icon: getIcon('eva:alert-triangle-fill'),
   },
 ];
 
