@@ -1,12 +1,14 @@
 package com.cs.commandos.model;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "zone")
 @Getter
+@Setter
 public class Zone {
 
     @Id
@@ -23,9 +25,9 @@ public class Zone {
     @Column(name = "seatEnd")
     private String seatEnd;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "owner_id", referencedColumnName = "id")
-    private SpaceOwner spaceOwner;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "owner_id", referencedColumnName = "id")
+//    private SpaceOwner spaceOwner;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "floor_id", referencedColumnName = "id")

@@ -1,16 +1,24 @@
 package com.cs.commandos.model;
 
-import liquibase.pro.packaged.E;
-import lombok.*;
+import java.sql.Timestamp;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.*;
-import java.sql.Timestamp;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "role")
 @Getter
+@Setter
 public class Role {
 
     @Id

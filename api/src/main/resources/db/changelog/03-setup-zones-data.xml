@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+	<changeSet id="20221709202023" author="Sunil">
+		<insert tableName="zone">
+			<column name="seat_start" value="A1" />
+			<column name="seat_end" value="A25" />
+			<column name="zone_name" value="A" />
+			<column name="floor_id" valueNumeric="1" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="B1" />
+			<column name="seat_end" value="B25" />
+			<column name="zone_name" value="B" />
+			<column name="floor_id" valueNumeric="1" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="C1" />
+			<column name="seat_end" value="C25" />
+			<column name="zone_name" value="C" />
+			<column name="floor_id" valueNumeric="1" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="D1" />
+			<column name="seat_end" value="D25" />
+			<column name="zone_name" value="D" />
+			<column name="floor_id" valueNumeric="1" />
+		</insert>
+
+
+		<insert tableName="zone">
+			<column name="seat_start" value="A1" />
+			<column name="seat_end" value="A25" />
+			<column name="zone_name" value="A" />
+			<column name="floor_id" valueNumeric="2" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="B1" />
+			<column name="seat_end" value="B25" />
+			<column name="zone_name" value="B" />
+			<column name="floor_id" valueNumeric="2" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="C1" />
+			<column name="seat_end" value="C25" />
+			<column name="zone_name" value="C" />
+			<column name="floor_id" valueNumeric="2" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="D1" />
+			<column name="seat_end" value="D25" />
+			<column name="zone_name" value="D" />
+			<column name="floor_id" valueNumeric="2" />
+		</insert>
+
+		<insert tableName="zone">
+			<column name="seat_start" value="A1" />
+			<column name="seat_end" value="A25" />
+			<column name="zone_name" value="A" />
+			<column name="floor_id" valueNumeric="3" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="B1" />
+			<column name="seat_end" value="B25" />
+			<column name="zone_name" value="B" />
+			<column name="floor_id" valueNumeric="3" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="C1" />
+			<column name="seat_end" value="C25" />
+			<column name="zone_name" value="C" />
+			<column name="floor_id" valueNumeric="3" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="D1" />
+			<column name="seat_end" value="D25" />
+			<column name="zone_name" value="D" />
+			<column name="floor_id" valueNumeric="3" />
+		</insert>
+
+
+		<insert tableName="zone">
+			<column name="seat_start" value="A1" />
+			<column name="seat_end" value="A25" />
+			<column name="zone_name" value="A" />
+			<column name="floor_id" valueNumeric="4" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="B1" />
+			<column name="seat_end" value="B25" />
+			<column name="zone_name" value="B" />
+			<column name="floor_id" valueNumeric="4" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="C1" />
+			<column name="seat_end" value="C25" />
+			<column name="zone_name" value="C" />
+			<column name="floor_id" valueNumeric="4" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="D1" />
+			<column name="seat_end" value="D25" />
+			<column name="zone_name" value="D" />
+			<column name="floor_id" valueNumeric="4" />
+		</insert>
+
+		<insert tableName="zone">
+			<column name="seat_start" value="A1" />
+			<column name="seat_end" value="A25" />
+			<column name="zone_name" value="A" />
+			<column name="floor_id" valueNumeric="5" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="B1" />
+			<column name="seat_end" value="B25" />
+			<column name="zone_name" value="B" />
+			<column name="floor_id" valueNumeric="5" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="C1" />
+			<column name="seat_end" value="C25" />
+			<column name="zone_name" value="C" />
+			<column name="floor_id" valueNumeric="5" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="D1" />
+			<column name="seat_end" value="D25" />
+			<column name="zone_name" value="D" />
+			<column name="floor_id" valueNumeric="5" />
+		</insert>
+
+
+		<insert tableName="zone">
+			<column name="seat_start" value="A1" />
+			<column name="seat_end" value="A25" />
+			<column name="zone_name" value="A" />
+			<column name="floor_id" valueNumeric="6" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="B1" />
+			<column name="seat_end" value="B25" />
+			<column name="zone_name" value="B" />
+			<column name="floor_id" valueNumeric="6" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="C1" />
+			<column name="seat_end" value="C25" />
+			<column name="zone_name" value="C" />
+			<column name="floor_id" valueNumeric="6" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="D1" />
+			<column name="seat_end" value="D25" />
+			<column name="zone_name" value="D" />
+			<column name="floor_id" valueNumeric="6" />
+		</insert>
+
+
+		<insert tableName="zone">
+			<column name="seat_start" value="A1" />
+			<column name="seat_end" value="A25" />
+			<column name="zone_name" value="A" />
+			<column name="floor_id" valueNumeric="7" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="B1" />
+			<column name="seat_end" value="B25" />
+			<column name="zone_name" value="B" />
+			<column name="floor_id" valueNumeric="7" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="C1" />
+			<column name="seat_end" value="C25" />
+			<column name="zone_name" value="C" />
+			<column name="floor_id" valueNumeric="7" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="D1" />
+			<column name="seat_end" value="D25" />
+			<column name="zone_name" value="D" />
+			<column name="floor_id" valueNumeric="7" />
+		</insert>
+
+
+		<insert tableName="zone">
+			<column name="seat_start" value="A1" />
+			<column name="seat_end" value="A25" />
+			<column name="zone_name" value="A" />
+			<column name="floor_id" valueNumeric="8" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="B1" />
+			<column name="seat_end" value="B25" />
+			<column name="zone_name" value="B" />
+			<column name="floor_id" valueNumeric="8" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="C1" />
+			<column name="seat_end" value="C25" />
+			<column name="zone_name" value="C" />
+			<column name="floor_id" valueNumeric="8" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="D1" />
+			<column name="seat_end" value="D25" />
+			<column name="zone_name" value="D" />
+			<column name="floor_id" valueNumeric="8" />
+		</insert>
+
+
+		<insert tableName="zone">
+			<column name="seat_start" value="A1" />
+			<column name="seat_end" value="A25" />
+			<column name="zone_name" value="A" />
+			<column name="floor_id" valueNumeric="9" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="B1" />
+			<column name="seat_end" value="B25" />
+			<column name="zone_name" value="B" />
+			<column name="floor_id" valueNumeric="9" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="C1" />
+			<column name="seat_end" value="C25" />
+			<column name="zone_name" value="C" />
+			<column name="floor_id" valueNumeric="9" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="D1" />
+			<column name="seat_end" value="D25" />
+			<column name="zone_name" value="D" />
+			<column name="floor_id" valueNumeric="9" />
+		</insert>
+
+
+		<insert tableName="zone">
+			<column name="seat_start" value="A1" />
+			<column name="seat_end" value="A25" />
+			<column name="zone_name" value="A" />
+			<column name="floor_id" valueNumeric="10" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="B1" />
+			<column name="seat_end" value="B25" />
+			<column name="zone_name" value="B" />
+			<column name="floor_id" valueNumeric="10" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="C1" />
+			<column name="seat_end" value="C25" />
+			<column name="zone_name" value="C" />
+			<column name="floor_id" valueNumeric="10" />
+		</insert>
+		<insert tableName="zone">
+			<column name="seat_start" value="D1" />
+			<column name="seat_end" value="D25" />
+			<column name="zone_name" value="D" />
+			<column name="floor_id" valueNumeric="10" />
+		</insert>
+
+	</changeSet>
+</databaseChangeLog>

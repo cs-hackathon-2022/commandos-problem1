@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -16,10 +17,11 @@ public class ZoneService {
     private ZoneRepository zoneRepository;
 
     public List<Zone> getZones() {
-        return zoneRepository.findAll();
+        List<Zone> findAll = zoneRepository.findAll();
+		return findAll;
     }
 
     public Zone getZone(long id) {
-        return zoneRepository.getOne(id);
+        return Optional.of(zoneRepository.findById(id)).get().orElse(null);
     }
 }
