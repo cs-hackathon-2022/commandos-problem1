@@ -4,12 +4,14 @@ import DashboardLayout from './layouts/dashboard';
 import LogoOnlyLayout from './layouts/LogoOnlyLayout';
 //
 import Blog from './pages/Blog';
-import User from './pages/User';
+import TakeAction from './pages/TakeAction';
 import Login from './pages/Login';
 import NotFound from './pages/Page404';
 import Register from './pages/Register';
-import Products from './pages/Products';
+import CreateTeam from './pages/CreateTeam';
 import DashboardApp from './pages/DashboardApp';
+import AllocateSpace from "./pages/AllocateSpace";
+import RequestSpace from "./pages/RequestSpace";
 
 // ----------------------------------------------------------------------
 
@@ -20,9 +22,10 @@ export default function Router() {
       element: <DashboardLayout />,
       children: [
         { path: 'app', element: <DashboardApp /> },
-        { path: 'user', element: <User /> },
-        { path: 'products', element: <Products /> },
-        { path: 'blog', element: <Blog /> },
+        { path: 'take-action', element: <TakeAction /> },
+        { path: 'create-team', element: <CreateTeam /> },
+        { path: 'allocate-space', element: <AllocateSpace /> },
+        { path: 'request-space', element: <RequestSpace /> },
         { path: 'login', element: <Login />},
         { path: 'register', element: <Register />},
       ],
