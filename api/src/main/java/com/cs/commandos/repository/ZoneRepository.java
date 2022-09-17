@@ -1,9 +1,9 @@
 package com.cs.commandos.repository;
 
-import com.cs.commandos.model.User;
+import com.cs.commandos.model.Zone;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface ZoneRepository extends JpaRepository<Zone, Long> {
 }
