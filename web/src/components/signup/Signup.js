@@ -15,14 +15,15 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme();
 
-export default function SignUp() {
+export default function SignUp(props) {
     const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+        //event.preventDefault();
+        props.history.push("/dashboard")
+        // const data = new FormData(event.currentTarget);
+        // console.log({
+        //     email: data.get('email'),
+        //     password: data.get('password'),
+        // });
     };
 
     return (
