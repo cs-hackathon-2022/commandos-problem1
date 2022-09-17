@@ -21,8 +21,8 @@ public class SpaceOwner {
     private String seatEnd;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "owner_id", referencedColumnName = "id")
-    private SpaceOwner spaceOwner;
+    @JoinColumn(name = "emp_id", referencedColumnName = "id")
+    private Employee employee;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "zone_id", referencedColumnName = "id")
