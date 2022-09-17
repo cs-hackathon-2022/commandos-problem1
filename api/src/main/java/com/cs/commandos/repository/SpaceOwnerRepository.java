@@ -1,9 +1,9 @@
 package com.cs.commandos.repository;
 
-import com.cs.commandos.model.User;
+import com.cs.commandos.model.SpaceOwner;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface SpaceOwnerRepository extends JpaRepository<SpaceOwner, Long> {
 }
