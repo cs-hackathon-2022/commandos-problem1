@@ -20,7 +20,7 @@ import {
 
 // ----------------------------------------------------------------------
 
-export default function RequestSpace() {
+export default function BookSeat() {
   const theme = useTheme();
 
   return (
