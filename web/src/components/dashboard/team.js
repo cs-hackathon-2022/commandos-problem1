@@ -1,12 +1,11 @@
 import { Avatar, Box, Card, CardContent, Grid, Typography } from '@mui/material';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import MoneyIcon from '@mui/icons-material/Money';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import PeopleIcon from '@mui/icons-material/PeopleOutlined';
+import Button from "@mui/material/Button";
+import * as React from "react";
 
-export const Seats = (props) => (
-    <Card
-        sx={{ height: '100%' }}
-        {...props}
-    >
+export const Team = (props) => (
+    <Card {...props}>
         <CardContent>
             <Grid
                 container
@@ -19,43 +18,48 @@ export const Seats = (props) => (
                         gutterBottom
                         variant="overline"
                     >
-                        Requests
+                        TOTAL SEATS BOOKED
                     </Typography>
                     <Typography
                         color="textPrimary"
                         variant="h4"
                     >
-                        10
+                        100
                     </Typography>
                 </Grid>
+                <Button
+                    color="textPrimary"
+                    variant="h4"
+                    onClick={()=>{console.log("on button click")}}>
+                    Create Team
+                </Button>
                 <Grid item>
                     <Avatar
                         sx={{
-                            backgroundColor: 'error.main',
+                            backgroundColor: 'success.main',
                             height: 56,
                             width: 56
                         }}
                     >
-                        <MoneyIcon />
+                        <PeopleIcon />
                     </Avatar>
                 </Grid>
             </Grid>
             <Box
                 sx={{
-                    pt: 2,
+                    alignItems: 'center',
                     display: 'flex',
-                    alignItems: 'center'
+                    pt: 2
                 }}
             >
-                <ArrowDownwardIcon color="error" />
+                <ArrowUpwardIcon color="success" />
                 <Typography
-                    color="error"
+                    variant="body2"
                     sx={{
                         mr: 1
                     }}
-                    variant="body2"
                 >
-                    12%
+                    16%
                 </Typography>
                 <Typography
                     color="textSecondary"

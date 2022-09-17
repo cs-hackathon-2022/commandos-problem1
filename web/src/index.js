@@ -4,24 +4,19 @@ import './index.css'
 import Dashboard from './components/dashboard/dashboard'
 import SignIn from "./components/signin/SignIn";
 import SignUp from "./components/signup/Signup";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import App from "./app";
 
 export default function Main() {
     return (
         <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<App/>}>
-                    <Route path="/signin" element={<SignIn />}/>
-                    <Route path="/dashboard" element={<Dashboard />}/>
-            </Route>
-            </Routes>
+               <App/>
         </BrowserRouter>
     );
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+root.render(<Main />);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
