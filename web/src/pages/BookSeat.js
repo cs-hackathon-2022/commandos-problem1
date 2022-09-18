@@ -24,7 +24,7 @@ export default function BookSeat() {
   const theme = useTheme();
 
   return (
-      <Page title="Request Space">
+      <Page title="Book Seat">
         <Container maxWidth="xl">
           <Typography variant="h4" sx={{ mb: 5 }}>
            Request Space

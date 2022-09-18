@@ -24,7 +24,7 @@ export default function AllocateSpace() {
     const theme = useTheme();
 
     return (
-        <Page title="Request Space">
+        <Page title="Allocate Space">
             <Container maxWidth="xl">
                 <Typography variant="h4" sx={{ mb: 5 }}>
                    Allocate Space

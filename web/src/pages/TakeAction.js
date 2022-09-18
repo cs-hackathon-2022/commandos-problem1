@@ -133,7 +133,7 @@ export default function TakeAction() {
   const isUserNotFound = filteredUsers.length === 0;
 
   return (
-    <Page title="TakeAction">
+    <Page title="Take Action">
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
