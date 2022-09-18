@@ -11,6 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ApplicableEmployees {
+    private Long empID;
     private String fname;
     private String lname;
     private String roleCode;
