@@ -43,4 +43,9 @@ public class EmployeeController {
         return employeeService.fetchApplicableEmployees(mgrId);
     }
 
+    @GetMapping(path = {"/spaceOwners"})
+    public ApplicableEmployeeResponse fetchSpaceOwners() {
+        return employeeService.fetchSpaceOwners();
+    }
+
 }

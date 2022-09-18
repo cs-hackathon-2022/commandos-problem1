@@ -13,8 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -67,10 +66,25 @@ public class EmployeeService {
     }
 
     public ApplicableEmployeeResponse fetchApplicableEmployees(String mgrId) {
-        List<Employee> emp =  Optional.ofNullable(employeeRepository.findByManagerId(mgrId)).get();
+        try {
+            List<Employee> emp = Optional.ofNullable(employeeRepository.findByManagerId(mgrId)).get();
+            return getApplicableEmployeeResponse(emp);
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    public ApplicableEmployeeResponse fetchSpaceOwners() {
+        ArrayList<Long> role = new ArrayList<>(Arrays.asList(1L,2L));
+        List<Employee> emp = Optional.ofNullable(employeeRepository.findAllByIdIn(role)).get();
+        return getApplicableEmployeeResponse(emp);
+    }
+
+    private ApplicableEmployeeResponse getApplicableEmployeeResponse(List<Employee> emp) {
         List<ApplicableEmployees> result = emp.stream().map(
                 resultmap -> {
                     ApplicableEmployees appEmp = new ApplicableEmployees();
+                    appEmp.setEmpID(resultmap.getId());
                     appEmp.setRoleCode(resultmap.getRole().getRoleCode());
                     appEmp.setFname(resultmap.getFname());
                     appEmp.setLname(resultmap.getLname());
