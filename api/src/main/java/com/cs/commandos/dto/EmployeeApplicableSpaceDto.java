@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -12,8 +13,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmployeeApplicableSpaceDto {
-    private List<SpaceMiniDto> availableSeats;
-    private List<SpaceMiniDto> reservedSeats;
+    private List<SpaceMiniDto> availableSeats = new ArrayList<>();
+    private List<SpaceMiniDto> reservedSeats = new ArrayList<>();
 }
 
 /*
