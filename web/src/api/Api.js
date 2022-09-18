@@ -2,11 +2,18 @@ import React from 'react';
 
 import axios from "axios";
 
-export const BASE_SERVER_URL = 'http://localhost:8080/api';
+const BASE_SERVER_URL = 'http://localhost:8080/api';
  export default class Api {
 
      static  axiosPostApi(requestURL, paramObject, resolve, reject ){
-         return axios.post(requestURL, paramObject).then( (response) =>{
+         const URL = BASE_SERVER_URL+requestURL;
+         console.log('URL===',URL,paramObject)
+         return axios.post(URL, paramObject,{
+             headers:{
+                 'Content-Type': 'application/json'
+             }
+         }).then((response) =>{
+             console.log('response URL======',response)
                  resolve(response);
          }).catch((error) =>{
                  reject(error);
@@ -14,7 +21,8 @@ export const BASE_SERVER_URL = 'http://localhost:8080/api';
     }
 
      static axiosGetApi(requestURL, resolve, reject) {
-         return axios.get(requestURL).then((response)=>{
+         const URL = BASE_SERVER_URL+requestURL;
+         return axios.get(URL).then((response)=>{
              resolve(response.data);
          }).catch((error)=>{
              reject(error);

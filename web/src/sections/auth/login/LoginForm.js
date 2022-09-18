@@ -10,24 +10,27 @@ import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../../../components/Iconify';
 import { FormProvider, RHFTextField, RHFCheckbox } from '../../../components/hook-form';
+import {Axios} from "axios";
+import Api from "../../../api/Api";
 
 // ----------------------------------------------------------------------
 
 export default function LoginForm() {
   const navigate = useNavigate();
+    const defaultValues = {
+        email: '',
+        password: '',
+    };
+  const [formValues,setFormValues] = useState({...defaultValues})
 
   const [showPassword, setShowPassword] = useState(false);
 
   const LoginSchema = Yup.object().shape({
-    email: Yup.string().email('Email must be a valid email address').required('Email is required'),
-    password: Yup.string().required('Password is required'),
+    // email: Yup.string().email('Email must be a valid email address').required('Email is required'),
+    // password: Yup.string().required('Password is required'),
   });
 
-  const defaultValues = {
-    email: '',
-    password: '',
-    remember: true,
-  };
+
 
   const methods = useForm({
     resolver: yupResolver(LoginSchema),
@@ -41,17 +44,37 @@ export default function LoginForm() {
 
   const onSubmit = async () => {
       sessionStorage.setItem('isUserLoggedIn', 'Y');
-      navigate('/dashboard/app', { replace: true });
+      new Promise( (resolve,reject)=>{
+           Api.axiosPostApi('/login',{
+              email:formValues.email,
+              password:formValues.password
+          },resolve, reject);
+      }).then((res)=> {
+          console.log('login repsonse===',res)
+          // sessionStorage.setItem('employeeData',loginResponse)
+          navigate('/dashboard/app', { replace: true });
+
+      }).catch(()=>{
+
+      })
+
   };
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3}>
-        <RHFTextField name="email" label="Email address" />
+        <RHFTextField name="email" label="Email address" value={formValues.email} onChange={(e)=>{
+            console.log('email=====',e.target.value)
+            setFormValues({...formValues,email:e.target.value});
+        }} />
 
         <RHFTextField
           name="password"
           label="Password"
+          value={formValues.password}
+          onChange={(e)=>{
+              setFormValues({...formValues,password:e.target.value});
+          }}
           type={showPassword ? 'text' : 'password'}
           InputProps={{
             endAdornment: (
