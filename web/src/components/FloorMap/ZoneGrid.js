@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {Box, CardContent, Card, Paper, CardHeader, Typography, Grid, Fade} from "@mui/material";
 import "../../style/Seats.css";
-import SeatBooking from "./SeatBooking";
+import SeatGrid from "./SeatGrid";
 
 
 const floorData = [
@@ -15,6 +15,10 @@ const floorData = [
                 numberOfSeats:50,
                 rangeFrom:19,
                 rangeTo:50,
+                seats:{
+                    seatsReserved:[{id:1,name:"Seat A"}, {id:2,name:"Seat B"}, {id:3,name:"Seat C"}],
+                    seatsAvailable:[{id:4,name:"Seat D"}, {id:5,name:"Seat E"}, {id:6,name:"Seat F"}]
+                },
                 availableSeats:20
             },
             {
@@ -22,12 +26,20 @@ const floorData = [
                 numberOfSeats:50,
                 rangeFrom:51,
                 rangeTo:100,
+                seats:{
+                    seatsReserved:[{id:1,name:"Seat A"}, {id:2,name:"Seat B"}, {id:3,name:"Seat C"}],
+                    seatsAvailable:[{id:4,name:"Seat D"}, {id:5,name:"Seat E"}, {id:6,name:"Seat F"}]
+                },
                 availableSeats:25
             },{
                 zoneName: "C",
                 numberOfSeats:50,
                 rangeFrom:101,
                 rangeTo:150,
+                seats:{
+                    seatsReserved:[{id:1,name:"Seat A"}, {id:2,name:"Seat B"}, {id:3,name:"Seat C"}],
+                    seatsAvailable:[{id:4,name:"Seat D"}, {id:5,name:"Seat E"}, {id:6,name:"Seat F"}]
+                },
                 availableSeats:0
             },
             {
@@ -35,6 +47,10 @@ const floorData = [
                 numberOfSeats:50,
                 rangeFrom:151,
                 rangeTo:200,
+                seats:{
+                    seatsReserved:[{id:1,name:"Seat A"}, {id:2,name:"Seat B"}, {id:3,name:"Seat C"}],
+                    seatsAvailable:[{id:4,name:"Seat D"}, {id:5,name:"Seat E"}, {id:6,name:"Seat F"}]
+                },
                 availableSeats:20
             }
         ]
@@ -48,6 +64,10 @@ const floorData = [
                 numberOfSeats:50,
                 rangeFrom:1,
                 rangeTo:50,
+                seats:{
+                    seatsReserved:[{id:1,name:"Seat A"}, {id:2,name:"Seat B"}, {id:3,name:"Seat C"}],
+                    seatsAvailable:[{id:4,name:"Seat D"}, {id:5,name:"Seat E"}, {id:6,name:"Seat F"}]
+                },
                 availableSeats:20,
                 isAvailable:true,
             },
@@ -56,6 +76,10 @@ const floorData = [
                 numberOfSeats:50,
                 rangeFrom:51,
                 rangeTo:100,
+                seats:{
+                    seatsReserved:[{id:1,name:"Seat A"}, {id:2,name:"Seat B"}, {id:3,name:"Seat C"}],
+                    seatsAvailable:[{id:4,name:"Seat D"}, {id:5,name:"Seat E"}, {id:6,name:"Seat F"}]
+                },
                 availableSeats:20,
                 isAvailable:true,
             },{
@@ -63,6 +87,10 @@ const floorData = [
                 numberOfSeats:50,
                 rangeFrom:101,
                 rangeTo:150,
+                seats:{
+                    seatsReserved:[{id:1,name:"Seat A"}, {id:2,name:"Seat B"}, {id:3,name:"Seat C"}],
+                    seatsAvailable:[{id:4,name:"Seat D"}, {id:5,name:"Seat E"}, {id:6,name:"Seat F"}]
+                },
                 availableSeats:20,
                 isAvailable:true,
             },
@@ -71,6 +99,10 @@ const floorData = [
                 numberOfSeats:50,
                 rangeFrom:151,
                 rangeTo:200,
+                seats:{
+                    seatsReserved:[{id:1,name:"Seat A"}, {id:2,name:"Seat B"}, {id:3,name:"Seat C"}],
+                    seatsAvailable:[{id:4,name:"Seat D"}, {id:5,name:"Seat E"}, {id:6,name:"Seat F"}]
+                },
                 availableSeats:20,
                 isAvailable:true,
             }
@@ -85,6 +117,10 @@ const floorData = [
                 numberOfSeats:50,
                 rangeFrom:1,
                 rangeTo:50,
+                seats:{
+                    seatsReserved:[{id:1,name:"Seat A"}, {id:2,name:"Seat B"}, {id:3,name:"Seat C"}],
+                    seatsAvailable:[{id:4,name:"Seat D"}, {id:5,name:"Seat E"}, {id:6,name:"Seat F"}]
+                },
                 availableSeats:20,
                 isAvailable:true,
             },
@@ -95,11 +131,19 @@ const floorData = [
                 rangeTo:100,
                 availableSeats:20,
                 isAvailable:true,
+                seats:{
+                    seatsReserved:[{id:1,name:"Seat A"}, {id:2,name:"Seat B"}, {id:3,name:"Seat C"}],
+                    seatsAvailable:[{id:4,name:"Seat D"}, {id:5,name:"Seat E"}, {id:6,name:"Seat F"}]
+                },
             },{
                 zoneName: "C",
                 numberOfSeats:50,
                 rangeFrom:101,
                 rangeTo:150,
+                seats:{
+                    seatsReserved:[{id:1,name:"Seat A"}, {id:2,name:"Seat B"}, {id:3,name:"Seat C"}],
+                    seatsAvailable:[{id:4,name:"Seat D"}, {id:5,name:"Seat E"}, {id:6,name:"Seat F"}]
+                },
                 availableSeats:20,
                 isAvailable:true,
             },
@@ -107,6 +151,10 @@ const floorData = [
                 zoneName: "D",
                 numberOfSeats:50,
                 rangeFrom:151,
+                seats:{
+                    seatsReserved:[{id:1,name:"Seat A"}, {id:2,name:"Seat B"}, {id:3,name:"Seat C"}],
+                    seatsAvailable:[{id:4,name:"Seat D"}, {id:5,name:"Seat E"}, {id:6,name:"Seat F"}]
+                },
                 rangeTo:200,
                 availableSeats:20,
                 isAvailable:false,
@@ -114,24 +162,6 @@ const floorData = [
         ]
     }
 ]
-//
-// const zone = [
-//     "Z1",
-//     "Z2",
-//     "Z3",
-//     "Z4",
-//     "Z5",
-//     "Z6",
-//     "Z7",
-//     "Z8"];
-// const availableZone = ["Z3",
-//     "Z4",
-//     "Z5",
-//     "Z6",
-//     "Z7,",
-//     "Z8"];
-// const seatsReserved =["Z1", "Z2"];
-// const initialZoneSelected= [];
 
 export default function ZoneGrid(){
 
@@ -148,7 +178,7 @@ export default function ZoneGrid(){
     const [zonesReserved, setZonesReserved] = useState([]);
     const [zonesSelected, setZonesSelected] = useState([]);
 
-    const [seats, setSeats] = useState([]);
+    const [zoneSeats, setZoneSeats] = useState({});
 
     const onFloorClickData = (flr) => {
         let isPresent = floorsSelected.some(fs => fs.floorName === flr.floorName)
@@ -168,9 +198,10 @@ export default function ZoneGrid(){
     }
 
     const onZoneClickData = (zone) => {
-        let isPresent = zones.some(zn => zn.zoneName === zone.zoneName)
+        let isPresent = zonesSelected.some(zn => zn.zoneName === zone.zoneName)
         if (!isPresent) {
             setZonesSelected([zone]);
+            setZoneSeats(zone.seats)
             setZoneSelected(true);
         }else{
             setZonesSelected([]);
@@ -252,13 +283,7 @@ export default function ZoneGrid(){
             </Fade>
         </Grid>
             <Grid item xs={10} md={10} lg={12} hidden={!zoneSelected}>
-                <Fade in={zoneSelected} {...({ timeout: 2000 })}>
-                    <Card>
-                        <CardContent>
-                            <SeatBooking/>
-                        </CardContent>
-                    </Card>
-                </Fade>
+                    <SeatGrid seats={zoneSeats}/>
             </Grid>
         </Grid>
     );

@@ -18,9 +18,13 @@ import {
   AppCurrentSubject,
   AppConversionRates,
 } from '../sections/@dashboard/app';
-import SeatBooking from "../components/FloorMap/SeatBooking";
+import SeatGrid from "../components/FloorMap/SeatGrid";
 
 // ----------------------------------------------------------------------
+const seats = {
+    seatsReserved:[{id:1,name:"Seat A"}, {id:2,name:"Seat B"}, {id:3,name:"Seat C"}],
+    seatsAvailable:[{id:4,name:"Seat D"}, {id:5,name:"Seat E"}, {id:6,name:"Seat F"}]
+}
 
 export default function BookSeat() {
   const theme = useTheme();
@@ -34,7 +38,7 @@ export default function BookSeat() {
 
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={12}>
-                <SeatBooking />
+                <SeatGrid seats={seats} />
             </Grid>
           </Grid>
         </Container>

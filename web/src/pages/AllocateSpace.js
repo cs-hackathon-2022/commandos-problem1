@@ -18,7 +18,6 @@ import {
     AppCurrentSubject,
     AppConversionRates,
 } from '../sections/@dashboard/app';
-import SeatBooking from "../components/FloorMap/SeatBooking";
 import ZoneGrid from "../components/FloorMap/ZoneGrid";
 
 // ----------------------------------------------------------------------
