@@ -57,8 +57,10 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   }, [pathname]);
 
   useEffect(()=>{
-    const id = '1234';  //TODO: to be fetched and stored on login
-    const url = BASE_SERVER_URL + `/employee/${id}`
+    const id = '1234';
+    //
+    // TODO: to be fetched and stored on login
+    const url = `${BASE_SERVER_URL}/employee/${id}`
     // const response = await Api.axiosGetApi(url);
     const response = employeeConfig.data;
     if(response){
