@@ -178,16 +178,16 @@ export default function TakeAction() {
                 fullWidth
                 variant="standard"
             />
-            <Box sx={{
-              display: 'flex',
-              alignItems: 'flex-start',
-              flexDirection: 'column',
-              p: 1,
-              m: 1,
-              borderRadius: 1,
-            }}>
-              From: <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-              To:   <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+              <Box sx={{
+                display: 'flex',
+                alignItems: 'flex-start',
+                flexDirection: 'column',
+                p: 1,
+                m: 1,
+                borderRadius: 1,
+              }}>
+                From: <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                To:   <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
             </Box>
             <Box sx={{
                   display: 'flex',
