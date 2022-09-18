@@ -21,6 +21,6 @@ public class SpaceOwnerService {
     }
 
     public SpaceOwner getSpaceOwner(long id) {
-        return spaceOwnerRepository.getOne(id);
+        return spaceOwnerRepository.findById(id).get();
     }
 }
