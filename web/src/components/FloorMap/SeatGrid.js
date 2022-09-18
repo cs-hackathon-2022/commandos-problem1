@@ -37,7 +37,7 @@ export default function SeatGrid(props){
     console.log("Seats===",seats)
     return (
         <Grid>
-            <Grid item xs={10} md={10} lg={12}>
+            <Grid item xs={10} md={10} lg={10}>
                 <Fade in={true} {...({ timeout: 2000 })}>
                     <Card>
                         <CardHeader title={"Seat Selector"} />
@@ -45,7 +45,7 @@ export default function SeatGrid(props){
                             <Box sx={{
                                 display: 'grid',
                                 gap: 5,
-                                gridTemplateColumns: 'repeat(10, 1fr)',
+                                gridTemplateColumns: 'repeat(6, 1fr)',
                             }}>
                                 {seats.map((seat) => (
                                     <Paper elevation={0} className={getSeatClass(seatsSelected, seatsReserved, seat)} key={seat.seatId} variant="outlined"
