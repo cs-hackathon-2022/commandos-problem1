@@ -1,6 +1,7 @@
 package com.cs.commandos.service;
 
 import com.cs.commandos.dto.EmployeeApplicableSpaceDto;
+import com.cs.commandos.dto.FloorDetails;
 import com.cs.commandos.dto.SpaceMiniDto;
 import com.cs.commandos.model.SpaceMaster;
 import com.cs.commandos.repository.SpaceMasterRepository;
@@ -51,5 +52,14 @@ public class SpaceMasterService {
         employeeApplicableSpaceDto.setReservedSeats(totalReservedSeats);
 
         return employeeApplicableSpaceDto;
+    }
+
+    public FloorDetails getFloorDetails() {
+        List<SpaceMaster> masterSpace = getAllSpaces();
+        for (SpaceMaster spaceMaster : masterSpace) {
+
+        }
+
+        return null;
     }
 }
