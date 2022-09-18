@@ -34,9 +34,11 @@ public class EmployeeController {
         return employeeService.registerService(employee);
     }
 
-    @PostMapping(path = {"/login"})
-    public Employee loginEmployee(@RequestBody LoginDto employeeLogin) {
-        return employeeService.employeeLogin(employeeLogin);
+    @GetMapping(path = {"/login/{emailId}/{password}"})
+    public Employee loginEmployee(@PathVariable("emailId") String email,
+                                  @PathVariable("password") String password) {
+        LoginDto loginDto = new LoginDto(email, password);
+        return employeeService.employeeLogin(loginDto);
     }
 
     @GetMapping(path = {"/applicableEmployees/{mgrId}"})
