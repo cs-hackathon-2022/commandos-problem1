@@ -2,6 +2,7 @@ package com.cs.commandos.controller;
 
 import java.util.List;
 
+import com.cs.commandos.dto.ApplicableEmployeeResponse;
 import com.cs.commandos.dto.EmployeeDto;
 import com.cs.commandos.dto.LoginDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,9 @@ public class EmployeeController {
         return employeeService.employeeLogin(employeeLogin);
     }
 
+    @GetMapping(path = {"/applicableEmployees/{mgrId}"})
+    public ApplicableEmployeeResponse fetchApplicableEmployee(@PathVariable("mgrId") String mgrId) {
+        return employeeService.fetchApplicableEmployees(mgrId);
+    }
 
 }

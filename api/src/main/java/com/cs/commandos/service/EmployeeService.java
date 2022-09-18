@@ -1,5 +1,7 @@
 package com.cs.commandos.service;
 
+import com.cs.commandos.dto.ApplicableEmployeeResponse;
+import com.cs.commandos.dto.ApplicableEmployees;
 import com.cs.commandos.dto.EmployeeDto;
 import com.cs.commandos.dto.LoginDto;
 import com.cs.commandos.model.Employee;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -33,6 +36,9 @@ public class EmployeeService {
     }
 
     public boolean registerService(EmployeeDto employee) {
+        if(!employeeRepository.findByEmail(employee.getEmail()).getEmail().isEmpty()) {
+            return false;
+        }
         Employee emp = new Employee();
         long roleId = 3;
         emp.setFname(employee.getFname());
@@ -52,6 +58,25 @@ public class EmployeeService {
     }
 
     public Employee employeeLogin(LoginDto employeeLogin) {
-       return  Optional.ofNullable(employeeRepository.findByEmail(employeeLogin.getEmailId())).get();
+        try {
+            return Optional.ofNullable(employeeRepository.findByEmail(employeeLogin.getEmailId())).get();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public ApplicableEmployeeResponse fetchApplicableEmployees(String mgrId) {
+        List<Employee> emp =  Optional.ofNullable(employeeRepository.findByManagerId(mgrId)).get();
+        List<ApplicableEmployees> result = emp.stream().map(
+                resultmap -> {
+                    ApplicableEmployees appEmp = new ApplicableEmployees();
+                    appEmp.setRoleCode(resultmap.getRole().getRoleCode());
+                    appEmp.setFname(resultmap.getFname());
+                    appEmp.setLname(resultmap.getLname());
+                    return appEmp;
+                }).collect(Collectors.toList());
+        ApplicableEmployeeResponse response = new ApplicableEmployeeResponse();
+        response.setApplicableEmployees(result);
+        return response;
     }
 }
