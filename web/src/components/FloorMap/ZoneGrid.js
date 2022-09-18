@@ -1,76 +1,205 @@
-import * as React from 'react';
-
-import "../../style/Seats.css";
-import { experimentalStyled as styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
 import {useState} from "react";
+import {Box, CardContent, Card, Paper, CardHeader, Typography, Grid, Fade} from "@mui/material";
+import "../../style/Seats.css";
 
 
-const Item = styled(Paper)(({ theme }) => ({
-    ...theme.typography.body2,
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-}));
+const floor = [
+    {
+        floorName:"Floor 1",
+        count:200,
+        isAvailable:false,
+        zone:[
+            {
+                zoneName: "A",
+                numberOfSeats:50,
+                rangeFrom:19,
+                rangeTo:50,
+                availableSeats:20
+            },
+            {
+                zoneName: "B",
+                numberOfSeats:50,
+                rangeFrom:51,
+                rangeTo:100,
+                availableSeats:25
+            },{
+                zoneName: "C",
+                numberOfSeats:50,
+                rangeFrom:101,
+                rangeTo:150,
+                availableSeats:0
+            },
+            {
+                zoneName: "D",
+                numberOfSeats:50,
+                rangeFrom:151,
+                rangeTo:200,
+                availableSeats:20
+            }
+        ]
+    },{
+        floorName:"Floor 2",
+        count:200,
+        zone:[
+            {
+                zoneName: "A",
+                numberOfSeats:50,
+                rangeFrom:1,
+                rangeTo:50,
+                availableSeats:20
+            },
+            {
+                zoneName: "B",
+                numberOfSeats:50,
+                rangeFrom:51,
+                rangeTo:100,
+                availableSeats:20
+            },{
+                zoneName: "C",
+                numberOfSeats:50,
+                rangeFrom:101,
+                rangeTo:150,
+                availableSeats:20
+            },
+            {
+                zoneName: "D",
+                numberOfSeats:50,
+                rangeFrom:151,
+                rangeTo:200,
+                availableSeats:20
+            }
+        ]
+    },{
+        floorName:"Floor 3",
+        count:200,
+        zone:[
+            {
+                zoneName: "A",
+                numberOfSeats:50,
+                rangeFrom:1,
+                rangeTo:50,
+                availableSeats:20
+            },
+            {
+                zoneName: "B",
+                numberOfSeats:50,
+                rangeFrom:51,
+                rangeTo:100,
+                availableSeats:20
+            },{
+                zoneName: "C",
+                numberOfSeats:50,
+                rangeFrom:101,
+                rangeTo:150,
+                availableSeats:20
+            },
+            {
+                zoneName: "D",
+                numberOfSeats:50,
+                rangeFrom:151,
+                rangeTo:200,
+                availableSeats:20
+            }
+        ]
+    }
+]
+
 
 const zone = [
-    "A1",
-    "A2",
-    "A3",
-    "A4",
-    "A5",
-    "A6",
-    "A7," ,
-    "A8"];
-const availableZone = ["A3",
-    "A4",
-    "A5",
-    "A6",
-    "A7,",
-    "A8"];
-const initialZoneSelected= ["A1", "A2"];
+    "Z1",
+    "Z2",
+    "Z3",
+    "Z4",
+    "Z5",
+    "Z6",
+    "Z7",
+    "Z8"];
+const availableZone = ["Z3",
+    "Z4",
+    "Z5",
+    "Z6",
+    "Z7,",
+    "Z8"];
+const seatsReserved =["Z1", "Z2"];
+const initialZoneSelected= [];
 
+export default function ZoneGrid(){
 
-export default function ZoneGrid(props) {
-    const {zoneSelected, setZoneSelected} = useState(initialZoneSelected);
-    const {zonesAvailable, setZonesAvailable} = useState(availableZone);
-    const {zones, setZones} = useState(zone);
+    const [floorSelected, setFloorSelected] = useState(false);
+
+    const [zones, setZone] = useState(zone);
+    const [zonesAvailable, setZonesAvailable] = useState(availableZone);
+    const [zoneReserved, setZoneReserved] = useState(seatsReserved);
+    const [zonesSelected, setZonesSelected] = useState(initialZoneSelected);
     const onClickData = (zone) => {
-        if (initialZoneSelected.indexOf(zone) <= -1) {
-            setZoneSelected([zone, ...initialZoneSelected]);
-        } else {
-            return null;
+        if (zonesSelected.indexOf(zone) <= -1) {
+            setZonesSelected([zone, ...zonesSelected]);
+        }else{
+            setZonesSelected(zonesSelected.filter(item=>item!=zone));
         }
     }
 
-    const onClickSeat = (row) => {
-        return initialZoneSelected.indexOf(row) <= -1;
+
+
+    const getClass = (selected,reservedSeat, site)=>{
+        if(selected.indexOf(site) > -1){
+            return "selected";
+        }
+        if(reservedSeat.indexOf(site) > -1){
+            return "reserved";
+        }
+        return "available";
     }
 
-    const checkTrue =(row) =>{
-        return initialZoneSelected.indexOf(row) <= -1;
-    }
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                {zone.map(row => (
-                    <Grid item xs={2} sm={4} md={4} key={row}
-                          className={ initialZoneSelected.indexOf(row) > -1
-                            ? "reserved"
-                            : initialZoneSelected.indexOf(row) > -1
-                                ? "selected"
-                                : "available"
-                    }  onClick={
-                        checkTrue(row)
-                            ? e => onClickSeat(row)
-                            : null
-                    }>
-                        <Item>{row}</Item>
-                    </Grid>
-                ))}
-            </Grid>
-        </Box>
+        <Grid>
+            <Grid xs={10} md={10} lg={12}>
+                <Fade in={true} {...({ timeout: 2000 })}>
+            <Card>
+                <CardHeader title={"Floor Selector"} />
+                <CardContent>
+                    <Box sx={{
+                        display: 'grid',
+                        gap: 5,
+                        gridTemplateColumns: 'repeat(10, 1fr)',
+                    }}>
+                        {floor.map((floor) => (
+                            <Paper elevation={4} className={getClass(zonesSelected, zoneReserved, floor)} key={floor.floorName} variant="outlined"
+                                   sx={{ py: 5, textAlign: 'center' }} onClick={()=>onClickData(floor.floorName)}>
+                                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                                    {floor.floorName}
+                                </Typography>
+                            </Paper>
+                        ))}
+                    </Box>
+                </CardContent>
+            </Card>
+                </Fade>
+        </Grid>
+        <Grid xs={10} md={10} lg={12} hidden={!floorSelected}>
+            <Fade in={true} {...({ timeout: 2000 })}>
+            <Card>
+                <CardHeader title={"Zone Selector"} />
+                <CardContent>
+                    <Box sx={{
+                        display: 'grid',
+                        gap: 5,
+                        gridTemplateColumns: 'repeat(10, 1fr)',
+                    }}>
+                        {zones.map((site) => (
+                            <Paper elevation={10} className={getClass(zonesSelected, zoneReserved, site)} key={site} variant="outlined"
+                                   sx={{ py: 5, textAlign: 'center' }} onClick={()=>onClickData(site)}>
+                                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                                    {site}
+                                </Typography>
+                            </Paper>
+                        ))}
+                    </Box>
+                </CardContent>
+            </Card>
+            </Fade>
+        </Grid>
+        </Grid>
     );
+
 }

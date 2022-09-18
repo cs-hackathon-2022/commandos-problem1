@@ -3,7 +3,7 @@ import "../../style/Seats.css";
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import {experimentalStyled as styled} from "@mui/material/styles";
-import {Button, TextField} from "@mui/material";
+import {Button, Fade, TextField} from "@mui/material";
 import {AppTrafficBySite} from "../../sections/@dashboard/app";
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -86,8 +86,8 @@ class SeatBooking extends React.Component {
                 "C6",
                 "C7"
             ],
-            seatReserved: [],
-            seatSelected: ["A1", "B2"]
+            seatReserved: ["A1"],
+            seatSelected: []
         };
     }
 
@@ -147,22 +147,20 @@ class DrawGrid extends React.Component {
     render() {
         return (
             <Grid>
-                <Grid>
-                <AppTrafficBySite
-                    title="Select Your Seat"
-                    list={this.props.seat}
-                    checktrue={this.props.checktrue}
-                    onClickData={this.props.onClickData}
-                    selected={this.props.selected}
-                    reservedSeat={this.props.reserved}
-                />
-                </Grid>
-                <Grid>
-                    <Button size="large" variant="contained" onClick={() => this.props.handleSubmited()}>Confirm Booking</Button>
-                </Grid>
+                    <Grid>
+                        <AppTrafficBySite
+                            title="Select Your Seat"
+                            list={this.props.seat}
+                            checktrue={this.props.checktrue}
+                            onClickData={this.props.onClickData}
+                            selected={this.props.selected}
+                            reservedSeat={this.props.reserved}
+                        />
+                    </Grid>
+                    <Grid>
+                        <Button size="large" variant="contained" onClick={() => this.props.handleSubmited()}>Confirm Booking</Button>
+                    </Grid>
             </Grid>
-
-
         );
     }
 }
