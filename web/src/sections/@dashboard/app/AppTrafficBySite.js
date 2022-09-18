@@ -1,6 +1,6 @@
 // @mui
 import PropTypes from 'prop-types';
-import { Box, Card, Paper, Typography, CardHeader, CardContent } from '@mui/material';
+import {Box, Card, Paper, Typography, CardHeader, CardContent, Fade} from '@mui/material';
 import "../../../style/Seats.css"
 // utils
 
@@ -20,10 +20,10 @@ export default function AppTrafficBySite({ title, subheader, list, checktrue, on
 
     function getClass(selected, reservedSeat, site){
         if(selected.indexOf(site) > -1){
-            return "reserved";
+            return "selected";
         }
         if(reservedSeat.indexOf(site) > -1){
-            return "selected";
+            return "reserved";
         }
         return "available";
     }
@@ -36,9 +36,10 @@ export default function AppTrafficBySite({ title, subheader, list, checktrue, on
     //     console.log("clicked checkTrue",seat);
     //     checktrue(seat);
     // }
-  return ( <Card {...other}>
+  return (
+      <Fade in={true} {...({ timeout: 2000 })}>
+      <Card {...other}>
       <CardHeader title={title} subheader={subheader} />
-
       <CardContent>
           <Box sx={{
                   display: 'grid',
@@ -54,6 +55,7 @@ export default function AppTrafficBySite({ title, subheader, list, checktrue, on
               ))}
           </Box>
       </CardContent>
-  </Card>);
+  </Card>
+      </Fade>);
 
 }
