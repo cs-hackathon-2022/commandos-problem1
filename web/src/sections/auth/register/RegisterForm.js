@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 // @mui
-import { Stack, IconButton, InputAdornment } from '@mui/material';
+import {Stack, IconButton, InputAdornment, Autocomplete, TextField} from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../../../components/Iconify';
@@ -49,7 +49,7 @@ export default function RegisterForm() {
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <Stack spacing={3}>
+      <Stack spacing={4}>
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
           <RHFTextField name="firstName" label="First name" />
           <RHFTextField name="lastName" label="Last name" />
@@ -70,6 +70,13 @@ export default function RegisterForm() {
               </InputAdornment>
             ),
           }}
+        />
+        <Autocomplete
+            id="combo-box-demo"
+
+            options={['Jain, Aarohi','Lada, Rahul','Thakur Chirag','Pandey, Manish', 'Mahadik Siddhesh', 'Shelar, Sachin', 'Guatam, Sandip', 'Nikhil, Nikhil', 'Chandrashekhar, Suresh']}
+            sx={{ width: 470, }}
+            renderInput={(params) => <TextField {...params} label="Manager" />}
         />
 
         <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}>

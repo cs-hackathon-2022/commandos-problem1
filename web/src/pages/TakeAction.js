@@ -1,7 +1,11 @@
-import { filter } from 'lodash';
-import { sentenceCase } from 'change-case';
-import { useState } from 'react';
+import {filter, sample} from 'lodash';
+import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import TimePicker from 'react-time-picker';
+import Slider from '@mui/material/Slider';
+
 // material
 import {
   Card,
@@ -16,8 +20,10 @@ import {
   Container,
   Typography,
   TableContainer,
-  TablePagination,
+  TablePagination, Grid, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Box,
 } from '@mui/material';
+import {faker} from "@faker-js/faker";
+
 // components
 import Page from '../components/Page';
 import Label from '../components/Label';
@@ -28,15 +34,22 @@ import { UserListHead, UserListToolbar, UserMoreMenu } from '../sections/@dashbo
 // mock
 import USERLIST from '../_mock/user';
 
+
 // ----------------------------------------------------------------------
+const users = [...Array(24)].map((_, index) => ({
+  id: faker.datatype.uuid(),
+  avatarUrl: `/static/mock-images/avatars/avatar_${index + 1}.jpg`,
+  name: faker.name.findName(),
+  seats: faker.random.numeric(),
+  from: sample(['06-02-2022']),
+  to: sample(['09-11-2022']),
+}));
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', alignRight: false },
-  { id: 'company', label: 'Company', alignRight: false },
-  { id: 'role', label: 'Role', alignRight: false },
-  { id: 'isVerified', label: 'Verified', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false },
-  { id: '' },
+  { id: 'seats', label: 'No. of Seats', alignRight: false },
+  { id: 'from', label: 'From', alignRight: false },
+  { id: 'to', label: 'To', alignRight: false },
 ];
 
 // ----------------------------------------------------------------------
@@ -82,6 +95,18 @@ export default function TakeAction() {
   const [filterName, setFilterName] = useState('');
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  const [open, setOpen] = React.useState(false);
+  const [startDate, setStartDate] = useState(new Date());
+  const [seats,setSeats] = useState(0)
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -134,97 +159,146 @@ export default function TakeAction() {
 
   return (
     <Page title="TakeAction">
+
       <Container>
+        <Dialog PaperProps={{
+          style: {
+            width: 500,
+            height:500
+          },
+        }} open={open} onClose={handleClose}>
+          <DialogTitle>New Request</DialogTitle>
+          <DialogContent>
+            <TextField style={{width:300}}
+                autoFocus
+                margin="dense"
+                id="name"
+                label="Name"
+                type="text"
+                fullWidth
+                variant="standard"
+            />
+            <Box sx={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              flexDirection: 'column',
+              p: 1,
+              m: 1,
+              borderRadius: 1,
+            }}>
+              From: <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+              To:   <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+            </Box>
+            <Box sx={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  flexDirection: 'column',
+                  p: 1,
+                  m: 1,
+                  borderRadius: 1,
+                }}>
+              Select login time: <TimePicker onChange={(time)=>{}} value={new Date()} />
+              Select logout time: <TimePicker onChange={(time)=>{}} value={new Date()} />
+            </Box>
+            <Box style={{width:300}}>
+              No.of Seats: <Slider
+                  defaultValue={70}
+                  valueLabelDisplay="auto"
+                  onChange={(seats)=>setSeats(seats)}
+              />
+            </Box>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={handleClose}>Crete Request</Button>
+          </DialogActions>
+        </Dialog>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
             Take Action
           </Typography>
-          <Button variant="contained" component={RouterLink} to="#" startIcon={<Iconify icon="eva:plus-fill" />}>
+          <Button variant="contained" component={RouterLink} to="#" onClick={handleClickOpen} startIcon={<Iconify icon="eva:plus-fill"/>}>
             New Request
           </Button>
         </Stack>
 
         <Card>
-          <UserListToolbar numSelected={selected.length} filterName={filterName} placeholder={'Search request...'} onFilterName={handleFilterByName} />
+          <Grid item xs={16} md={10} lg={12}>
+            <UserListToolbar numSelected={selected.length} filterName={filterName} placeholder={'Search request...'} onFilterName={handleFilterByName} />
 
-          <Scrollbar>
-            <TableContainer sx={{ minWidth: 800 }}>
-              <Table>
-                <UserListHead
-                  order={order}
-                  orderBy={orderBy}
-                  headLabel={TABLE_HEAD}
-                  rowCount={USERLIST.length}
-                  numSelected={selected.length}
-                  onRequestSort={handleRequestSort}
-                  onSelectAllClick={handleSelectAllClick}
-                />
-                <TableBody>
-                  {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, role, status, company, avatarUrl, isVerified } = row;
-                    const isItemSelected = selected.indexOf(name) !== -1;
-
-                    return (
-                      <TableRow
-                        hover
-                        key={id}
-                        tabIndex={-1}
-                        role="checkbox"
-                        selected={isItemSelected}
-                        aria-checked={isItemSelected}
-                      >
-                        <TableCell component="th" scope="row" padding="none">
-                          <Stack direction="row" alignItems="center" spacing={2} style={{marginLeft: 7}}>
-                            <Avatar alt={name} src={avatarUrl} />
-                            <Typography variant="subtitle2" noWrap>
-                              {name}
-                            </Typography>
-                          </Stack>
-                        </TableCell>
-                        <TableCell align="left">{company}</TableCell>
-                        <TableCell align="left">{role}</TableCell>
-                        <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
-                        <TableCell align="left">
-                          <Label variant="ghost" color={(status === 'banned' && 'error') || 'success'}>
-                            {sentenceCase(status)}
-                          </Label>
-                        </TableCell>
-
-                        <TableCell align="right">
-                          <UserMoreMenu  moreOption={['Accept', 'Reject']}/>
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
-                  {emptyRows > 0 && (
-                    <TableRow style={{ height: 53 * emptyRows }}>
-                      <TableCell colSpan={6} />
-                    </TableRow>
-                  )}
-                </TableBody>
-
-                {isUserNotFound && (
+            <Scrollbar>
+              <TableContainer sx={{ minWidth: 800 }}>
+                <Table>
+                  <UserListHead
+                      order={order}
+                      orderBy={orderBy}
+                      headLabel={TABLE_HEAD}
+                      rowCount={USERLIST.length}
+                      numSelected={selected.length}
+                      onRequestSort={handleRequestSort}
+                      onSelectAllClick={handleSelectAllClick}
+                  />
                   <TableBody>
-                    <TableRow>
-                      <TableCell align="center" colSpan={6} sx={{ py: 3 }}>
-                        <SearchNotFound searchQuery={filterName} />
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                )}
-              </Table>
-            </TableContainer>
-          </Scrollbar>
+                    {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                      const { id, avatarUrl,name, seats, from, to } = row;
+                      const isItemSelected = selected.indexOf(name) !== -1;
 
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={USERLIST.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
+                      return (
+                          <TableRow
+                              hover
+                              key={id}
+                              tabIndex={-1}
+                              role="checkbox"
+                              selected={isItemSelected}
+                              aria-checked={isItemSelected}
+                          >
+                            <TableCell component="th" scope="row" padding="none">
+                              <Stack direction="row" alignItems="center" spacing={2}>
+                                <Avatar alt={name} src={avatarUrl} style={{marginLeft:7}} />
+                                <Typography variant="subtitle2" noWrap>
+                                  {name}
+                                </Typography>
+                              </Stack>
+                            </TableCell>
+                            <TableCell align="left">{seats}</TableCell>
+                            <TableCell align="left">{from}</TableCell>
+                            <TableCell align="left">{to}</TableCell>
+                            <TableCell align="right">
+                              <UserMoreMenu moreOption={['Accept', 'Reject']} />
+                            </TableCell>
+                          </TableRow>
+                      );
+                    })}
+                    {emptyRows > 0 && (
+                        <TableRow style={{ height: 53 * emptyRows }}>
+                          <TableCell colSpan={6} />
+                        </TableRow>
+                    )}
+                  </TableBody>
+
+                  {isUserNotFound && (
+                      <TableBody>
+                        <TableRow>
+                          <TableCell align="center" colSpan={6} sx={{ py: 3 }}>
+                            <SearchNotFound searchQuery={filterName} />
+                          </TableCell>
+                        </TableRow>
+                      </TableBody>
+                  )}
+                </Table>
+              </TableContainer>
+            </Scrollbar>
+
+            <TablePagination
+                rowsPerPageOptions={[5, 10, 25]}
+                component="div"
+                count={USERLIST.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+          </Grid>
         </Card>
       </Container>
     </Page>
