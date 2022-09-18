@@ -17,6 +17,8 @@ import {
     AppCurrentSubject,
     AppConversionRates,
 } from '../sections/@dashboard/app';
+import SeatBooking from "../components/FloorMap/SeatBooking";
+import React from "react";
 
 // ----------------------------------------------------------------------
 
@@ -93,6 +95,7 @@ export default function AllocateSpace() {
                             }))}
                         />
                     </Grid>
+                    <SeatBooking />
                 </Grid>
             </Container>
         </Page>

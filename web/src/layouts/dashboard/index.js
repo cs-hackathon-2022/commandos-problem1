@@ -43,7 +43,6 @@ export default function DashboardLayout() {
       <DashboardSidebar isOpenSidebar={open} onCloseSidebar={() => setOpen(false)} />
       <MainStyle>
         <Outlet />
-        <SeatBooking />
       </MainStyle>
     </RootStyle>
   );
