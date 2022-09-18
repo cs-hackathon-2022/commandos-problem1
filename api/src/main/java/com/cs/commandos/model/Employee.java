@@ -1,13 +1,17 @@
 package com.cs.commandos.model;
 
 import lombok.Getter;
+import lombok.Setter;
+
+import java.io.Serializable;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "employee")
 @Getter
-public class Employee {
+@Setter
+public class Employee implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,9 +32,9 @@ public class Employee {
     @Column(name = "mobile")
     private Long mobile;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "zone_id", referencedColumnName = "id")
-    private Zone zone;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "zone_id", referencedColumnName = "id")
+//    private Zone zone;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id", referencedColumnName = "id")
