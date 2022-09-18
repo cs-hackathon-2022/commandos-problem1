@@ -42,29 +42,27 @@ export default function LoginForm() {
     formState: { isSubmitting },
   } = methods;
 
-  const onSubmit = async () => {
+  const onSubmit =  () => {
       sessionStorage.setItem('isUserLoggedIn', 'Y');
-      new Promise( (resolve,reject)=>{
-           Api.axiosPostApi('/login',{
-              email:formValues.email,
-              password:formValues.password
-          },resolve, reject);
-      }).then((res)=> {
-          console.log('login repsonse===',res)
-          // sessionStorage.setItem('employeeData',loginResponse)
-          navigate('/dashboard/app', { replace: true });
+      new Promise( (resolve,reject)=> {
+          Api.axiosGetApi(`/login/${formValues.email}/${formValues.password}`).then((res) => {
+              sessionStorage.setItem('employeeID',res.data.id)
+              sessionStorage.setItem('employeeName',res.data.fname+ ' ' + res.data.lname);
+              sessionStorage.setItem('employeeRole',res.data.role.roleType.toLowerCase().split('_').join(' '))
+              sessionStorage.setItem('employeeEmail',res.data.email);
+              navigate('/dashboard/app', {replace: true});
 
-      }).catch(()=>{
+          }).catch(() => {
 
+          })
       })
-
+      navigate('/dashboard/app', { replace: true });
   };
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3}>
         <RHFTextField name="email" label="Email address" value={formValues.email} onChange={(e)=>{
-            console.log('email=====',e.target.value)
             setFormValues({...formValues,email:e.target.value});
         }} />
 

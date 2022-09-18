@@ -40,6 +40,8 @@ export default function AccountPopover() {
     sessionStorage.setItem('isUserLoggedIn','N')
       navigate('/login')
   };
+    const name = sessionStorage.getItem('employeeName')
+    const email = sessionStorage.getItem('employeeEmail')
 
   return (
     <>
@@ -80,10 +82,10 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle2" noWrap>
-            {account.displayName}
+            {name}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {account.email}
+            {email}
           </Typography>
         </Box>
 

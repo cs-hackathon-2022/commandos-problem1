@@ -69,6 +69,8 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
       setNavConfig(mNavConfig)
     }
   },[])
+  const name = sessionStorage.getItem('employeeName')
+  const role = sessionStorage.getItem('employeeRole')
 
   const renderContent = (
     <Scrollbar
@@ -87,10 +89,10 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
             <Avatar src={account.photoURL} alt="photoURL" />
             <Box sx={{ ml: 2 }}>
               <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
-                {account.displayName}
+                {name}
               </Typography>
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                {account.role}
+                {role}
               </Typography>
             </Box>
           </AccountStyle>
