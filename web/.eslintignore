@@ -6,5 +6,7 @@ src/serviceWorkerRegistration.js
 src/setupTests.js
 src/reportWebVitals.js
 src/components/FloorMap/SeatBooking.js
-src/components/FloorMap/SeatGrid.js
+src/components/FloorMap/ZoneGrid.js
+src/components/FloorMap/DrawGrid.js
+src/components/*
 

@@ -38,27 +38,19 @@ export default function ZoneGrid(props) {
     const {zonesAvailable, setZonesAvailable} = useState(availableZone);
     const {zones, setZones} = useState(zone);
     const onClickData = (zone) => {
-        if (initialZoneSelected.indexOf(zone) > -1) {
-            return null;
+        if (initialZoneSelected.indexOf(zone) <= -1) {
+            setZoneSelected([zone, ...initialZoneSelected]);
         } else {
-            setZoneSelected([zone,...initialZoneSelected]);
+            return null;
         }
     }
 
     const onClickSeat = (row) => {
-        if (initialZoneSelected.indexOf(row) > -1) {
-            return false;
-        } else {
-            return true;
-        }
+        return initialZoneSelected.indexOf(row) <= -1;
     }
 
     const checkTrue =(row) =>{
-        if (initialZoneSelected.indexOf(row) > -1) {
-            return false;
-        } else {
-            return true;
-        }
+        return initialZoneSelected.indexOf(row) <= -1;
     }
     return (
         <Box sx={{ flexGrow: 1 }}>
