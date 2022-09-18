@@ -67,7 +67,7 @@ export default function AccountPopover() {
       <MenuPopover
         open={Boolean(open)}
         anchorEl={open}
-        onClose={handleClose}
+        onClose={()=>setOpen(null)}
         sx={{
           p: 0,
           mt: 1.5,
@@ -91,7 +91,7 @@ export default function AccountPopover() {
 
         <Stack sx={{ p: 1 }}>
           {MENU_OPTIONS.map((option) => (
-            <MenuItem key={option.label} to={option.linkTo} component={RouterLink} onClick={handleClose}>
+            <MenuItem key={option.label} to={option.linkTo} component={RouterLink} onClick={()=>setOpen(null)}>
               {option.label}
             </MenuItem>
           ))}
