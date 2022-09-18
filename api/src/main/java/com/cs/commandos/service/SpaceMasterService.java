@@ -95,6 +95,7 @@ public class SpaceMasterService {
                     zoneDto.setAvailableSeatCount(totalAvailableSeats.size());
                     zoneDto.setAvailableSeats(totalAvailableSeats);
                     zoneDto.setReservedSeats(totalReservedSeats);
+                    zoneDto.setReservedSeatCount(totalReservedSeats.size());
                     zoneDtoList.add(zoneDto);
                     floorSeatCount += totalReservedSeats.size() + totalAvailableSeats.size();
             }

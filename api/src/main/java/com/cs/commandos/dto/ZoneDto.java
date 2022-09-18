@@ -18,4 +18,6 @@ public class ZoneDto {
     private List<SpaceMiniDto> availableSeats;
     private int rangeTo;
     private int availableSeatCount;
+    private int reservedSeatCount;
+
 }

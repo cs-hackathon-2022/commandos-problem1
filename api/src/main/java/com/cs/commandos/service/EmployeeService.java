@@ -106,10 +106,19 @@ public class EmployeeService {
     }
 
     public EmployeeApplicableSpaceDto getApplicableSpaces(Long empId) {
-        Employee employee = employeeRepository.findById(empId).get();
-        SpaceOwner spaceOwner = spaceOwnerService.getSpaceOwner(employee.getManagerId());
-        EmployeeApplicableSpaceDto employeeApplicableSpaceDto =  spaceMasterService.getSpaceDetails(spaceOwner.getSeatStart(), spaceOwner.getSeatEnd());
-        return employeeApplicableSpaceDto;
+        try {
+            Employee employee = employeeRepository.findById(empId).get();
+            SpaceOwner spaceOwner = spaceOwnerService.getSpaceOwner(employee.getManagerId());
+            if (spaceOwner != null) {
+                EmployeeApplicableSpaceDto employeeApplicableSpaceDto = spaceMasterService.getSpaceDetails(spaceOwner.getSeatStart(), spaceOwner.getSeatEnd());
+                return employeeApplicableSpaceDto;
+            }
 
+        }catch(Exception e) {
+            e.printStackTrace();
+
+        }
+
+        return new EmployeeApplicableSpaceDto();
     }
 }
