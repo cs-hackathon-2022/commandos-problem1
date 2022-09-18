@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { faker } from '@faker-js/faker';
 // @mui
 import { useTheme } from '@mui/material/styles';
@@ -19,15 +19,21 @@ import {
   AppConversionRates,
 } from '../sections/@dashboard/app';
 import SeatGrid from "../components/FloorMap/SeatGrid";
+import Api from "../api/Api";
 
 // ----------------------------------------------------------------------
-const seats = {
-    seatsReserved:[{id:1,name:"Seat A"}, {id:2,name:"Seat B"}, {id:3,name:"Seat C"}],
-    seatsAvailable:[{id:4,name:"Seat D"}, {id:5,name:"Seat E"}, {id:6,name:"Seat F"}]
-}
 
 export default function BookSeat() {
-  const theme = useTheme();
+
+    const [seats, setSeats] = useState({});
+    useEffect(()=>{
+        Api.axiosGetApi('/employee/10/availableSpaces')
+            .then((response) => {
+                console.log("response===",response)
+                setSeats({...seats,...response.data})
+            }).catch(() => {
+        })
+    },[]);
 
   return (
       <Page title="Book Seat">
