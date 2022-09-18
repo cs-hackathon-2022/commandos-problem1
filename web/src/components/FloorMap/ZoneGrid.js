@@ -282,9 +282,6 @@ export default function ZoneGrid(){
             </Card>
             </Fade>
         </Grid>
-            <Grid item xs={10} md={10} lg={12} hidden={!zoneSelected}>
-                    <SeatGrid seats={zoneSeats}/>
-            </Grid>
         </Grid>
     );
 
