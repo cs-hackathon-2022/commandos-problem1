@@ -28,7 +28,7 @@ public class SpaceOwnerController {
         return spaceOwner;
     }
 
-    @GetMapping(path = { "/space-owner/{id}/allocatedSpaces" })
+    @GetMapping(path = { "/space-owner/{id}/availableSpaces" })
     public List<FloorDto> getAllocatedSpaces(@PathVariable("id") Long id) {
         return spaceOwnerService.getAllocatedSpaceDetails(id);
     }
