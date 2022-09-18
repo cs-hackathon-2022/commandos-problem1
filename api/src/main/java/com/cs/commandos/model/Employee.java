@@ -32,15 +32,12 @@ public class Employee implements Serializable {
     @Column(name = "mobile")
     private Long mobile;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "zone_id", referencedColumnName = "id")
-//    private Zone zone;
+    @Column(name = "managerId")
+    private String managerId;
 
-    @OneToOne(cascade = CascadeType.ALL)
+   @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id", referencedColumnName = "id")
-    private Role role;
+    private Roles role;
     
-    @ManyToOne
-    @JoinColumn(name = "team_id")
-    private Team team;
+
 }

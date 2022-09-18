@@ -31,7 +31,7 @@ public class User {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "role_id", referencedColumnName = "id")
-	private Role role;
+	private Roles role;
 
 
 }

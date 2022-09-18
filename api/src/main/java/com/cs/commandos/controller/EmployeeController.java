@@ -2,11 +2,10 @@ package com.cs.commandos.controller;
 
 import java.util.List;
 
+import com.cs.commandos.dto.EmployeeDto;
+import com.cs.commandos.dto.LoginDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.cs.commandos.model.Employee;
 import com.cs.commandos.service.EmployeeService;
@@ -27,5 +26,16 @@ public class EmployeeController {
         Employee employee = employeeService.getEmployee(id);
         return employee;
     }
+
+    @PutMapping(path = {"/register"})
+    public boolean registerEmployee(@RequestBody EmployeeDto employee) {
+        return employeeService.registerService(employee);
+    }
+
+    @PostMapping(path = {"/login"})
+    public Employee loginEmployee(@RequestBody LoginDto employeeLogin) {
+        return employeeService.employeeLogin(employeeLogin);
+    }
+
 
 }
