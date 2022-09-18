@@ -18,12 +18,6 @@ const navConfig = [
     visible: false
   },
   {
-    title: 'create-team',
-    path: '/dashboard/create-team',
-    icon: getIcon('eva:shopping-bag-fill'),
-    visible: false
-  },
-  {
     title: 'allocate-space',
     path: '/dashboard/allocate-space',
     icon: getIcon('eva:shopping-bag-fill'),
@@ -61,7 +55,7 @@ function checkIfScreenShouldBeVisible(item,employeeData){
     const isUserLoggedIn = sessionStorage.getItem('isUserLoggedIn')
     isVisible = isUserLoggedIn
   }
-  if(item.title === 'take-action' || item.title === 'create-team' || item.title === 'allocate-space'){
+  if(item.title === 'take-action' || item.title === 'allocate-space'){
     if(employeeData.role === 'space-manager' || employeeData.role === 'space-owner'){
       isVisible = true
     }

@@ -5,8 +5,6 @@ import Grid from '@mui/material/Grid';
 import {experimentalStyled as styled} from "@mui/material/styles";
 import {Button, TextField} from "@mui/material";
 import {AppTrafficBySite} from "../../sections/@dashboard/app";
-import DateFnsUtils from '@date-io/date-fns';
-import {DateTimePicker} from "@mui/lab";
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -159,7 +157,7 @@ class DrawGrid extends React.Component {
                     reservedSeat={this.props.reserved}
                 />
                 </Grid>
-                <Grid  >
+                <Grid>
                     <Button size="large" variant="contained" onClick={() => this.props.handleSubmited()}>Confirm Booking</Button>
                 </Grid>
             </Grid>
