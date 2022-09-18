@@ -3,9 +3,12 @@ package com.cs.commandos.service;
 import com.cs.commandos.dto.*;
 import com.cs.commandos.model.Employee;
 import com.cs.commandos.model.Roles;
+import com.cs.commandos.model.SpaceMaster;
 import com.cs.commandos.model.SpaceOwner;
 import com.cs.commandos.repository.EmployeeRepository;
 import com.cs.commandos.repository.RoleRepository;
+import com.cs.commandos.repository.SpaceMasterRepository;
+import com.cs.commandos.repository.SpaceOwnerRepository;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,12 @@ public class EmployeeService {
 
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private SpaceOwnerRepository spaceOwnerRepository;
+
+    @Autowired
+    private SpaceMasterRepository spaceMasterRepository;
 
     @Autowired
     private SpaceMasterService spaceMasterService;
@@ -87,6 +96,50 @@ public class EmployeeService {
         } catch (Exception e) {
             return null;
         }
+
+    }
+
+    public boolean assignSeats(Long empId, int totalSeats) {
+        try {
+            EmployeeApplicableSpaceDto availableSeats = getApplicableSpaces(empId);
+            int seatStart;
+            int seatEnd;
+            SpaceOwner spaceOwner;
+            try {
+                spaceOwner  = Optional.ofNullable(spaceOwnerRepository.findByEmployeeId(empId)).orElse(null);
+                if(spaceOwner != null) {
+                    seatStart = spaceOwner.getSeatStart();
+                    seatEnd = spaceOwner.getSeatEnd() + totalSeats;
+                } else {
+                    spaceOwner = new SpaceOwner();
+                    seatStart = Math.toIntExact(availableSeats.getAvailableSeats().get(0).getSeatId());
+                    seatEnd = seatStart + totalSeats - 1;
+                }
+            } catch(Exception e ) {
+                spaceOwner = new SpaceOwner();
+                seatStart = Math.toIntExact(availableSeats.getAvailableSeats().get(0).getSeatId());
+                seatEnd = seatStart + totalSeats - 1;
+            }
+            Employee user = Optional.ofNullable(employeeRepository.findById(empId).get()).orElse(null);
+
+            if(user != null) {
+                spaceOwner.setEmployee(user);
+                spaceOwner.setSeatEnd(seatEnd);
+                spaceOwner.setSeatStart(seatStart);
+                spaceOwnerRepository.save(spaceOwner);
+                for(int i = 0 ; i <totalSeats; i++) {
+                    SpaceMaster seat = spaceMasterRepository.findById(availableSeats.getAvailableSeats().get(i).getSeatId()).get();
+                    seat.setAvailabilityStatus("ALLOCATED");
+                    spaceMasterRepository.save(seat);
+                }
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+
 
     }
 

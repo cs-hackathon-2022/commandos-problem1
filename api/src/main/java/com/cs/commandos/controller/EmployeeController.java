@@ -57,4 +57,10 @@ public class EmployeeController {
         return employeeService.getApplicableSpaces(empId);
     }
 
+    @GetMapping(path = {"/assign/{empId}/{totalSeats}"})
+    public boolean assignSeats(@PathVariable("empId") Long empId,
+                               @PathVariable("totalSeats") int totalSeats) {
+        return employeeService.assignSeats(empId, totalSeats);
+    }
+
 }
