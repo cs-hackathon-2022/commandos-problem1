@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 // material
 import { styled } from '@mui/material/styles';
 //
 import DashboardNavbar from './DashboardNavbar';
 import DashboardSidebar from './DashboardSidebar';
+import SeatBooking from "../../components/FloorMap/SeatBooking";
+import ZoneGrid from "../../components/FloorMap/SeatGrid";
 
 // ----------------------------------------------------------------------
 
@@ -41,6 +43,7 @@ export default function DashboardLayout() {
       <DashboardSidebar isOpenSidebar={open} onCloseSidebar={() => setOpen(false)} />
       <MainStyle>
         <Outlet />
+        <SeatBooking />
       </MainStyle>
     </RootStyle>
   );
