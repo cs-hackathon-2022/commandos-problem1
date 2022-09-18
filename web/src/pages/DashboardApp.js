@@ -54,12 +54,10 @@ function applySortFilter(array, comparator, query) {
 }
 
 const TABLE_HEAD = [
-    { id: 'name', label: 'Name', alignRight: false },
-    { id: 'company', label: 'Company', alignRight: false },
-    { id: 'role', label: 'Role', alignRight: false },
-    { id: 'isVerified', label: 'Verified', alignRight: false },
-    { id: 'status', label: 'Status', alignRight: false },
-    { id: '' },
+    { id: 'name', label: 'Employee Name', alignRight: false },
+    { id: 'numofseat', label: 'No of seats', alignRight: false },
+    { id: 'from', label: 'From', alignRight: false },
+    { id: 'to', label: 'To', alignRight: false },
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -157,11 +155,11 @@ export default function DashboardApp() {
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Zones allocated" total={10} color="warning" icon={'eos-icons:virtual-space'} />
+            <AppWidgetSummary title="Zones allocated" total={10} color="info" icon={'eos-icons:virtual-space'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Bug Reports" total={234} color="error" icon={'ant-design:bug-filled'} />
+            <AppWidgetSummary title="Floors" total={4} color="error" icon={'carbon:floorplan'} />
           </Grid>
 
             <Grid item xs={16} md={10} lg={12}>
@@ -181,7 +179,7 @@ export default function DashboardApp() {
                             />
                             <TableBody>
                                 {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                                    const { id, name, role, status, company, avatarUrl, isVerified } = row;
+                                    const { id, avatarUrl,name, seats, from, to } = row;
                                     const isItemSelected = selected.indexOf(name) !== -1;
 
                                     return (
@@ -193,9 +191,6 @@ export default function DashboardApp() {
                                             selected={isItemSelected}
                                             aria-checked={isItemSelected}
                                         >
-                                            <TableCell padding="checkbox">
-                                                <Checkbox checked={isItemSelected} onChange={(event) => handleClick(event, name)} />
-                                            </TableCell>
                                             <TableCell component="th" scope="row" padding="none">
                                                 <Stack direction="row" alignItems="center" spacing={2}>
                                                     <Avatar alt={name} src={avatarUrl} />
@@ -204,17 +199,11 @@ export default function DashboardApp() {
                                                     </Typography>
                                                 </Stack>
                                             </TableCell>
-                                            <TableCell align="left">{company}</TableCell>
-                                            <TableCell align="left">{role}</TableCell>
-                                            <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
-                                            <TableCell align="left">
-                                                <Label variant="ghost" color={(status === 'banned' && 'error') || 'success'}>
-                                                    {sentenceCase(status)}
-                                                </Label>
-                                            </TableCell>
-
+                                            <TableCell align="left">{seats}</TableCell>
+                                            <TableCell align="left">{from}</TableCell>
+                                            <TableCell align="left">{to}</TableCell>
                                             <TableCell align="right">
-                                                <UserMoreMenu />
+                                                <UserMoreMenu moreOption={['Accept', 'Reject']} />
                                             </TableCell>
                                         </TableRow>
                                     );
@@ -292,63 +281,18 @@ export default function DashboardApp() {
 
           <Grid item xs={12} md={6} lg={4}>
             <AppCurrentVisits
-              title="Current Visits"
+              title="Current Bookings"
               chartData={[
-                { label: 'America', value: 4344 },
-                { label: 'Asia', value: 5435 },
-                { label: 'Europe', value: 1443 },
-                { label: 'Africa', value: 4443 },
+                { label: 'Floor 1', value: 4344 },
+                { label: 'FLoor 2', value: 5435 },
+                { label: 'Floor 3', value: 1443 },
+                { label: 'Floor 4', value: 4443 },
               ]}
               chartColors={[
                 theme.palette.primary.main,
                 theme.palette.chart.blue[0],
                 theme.palette.chart.violet[0],
                 theme.palette.chart.yellow[0],
-              ]}
-            />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={8}>
-            <AppConversionRates
-              title="Conversion Rates"
-              subheader="(+43%) than last year"
-              chartData={[
-                { label: 'Italy', value: 400 },
-                { label: 'Japan', value: 430 },
-                { label: 'China', value: 448 },
-                { label: 'Canada', value: 470 },
-                { label: 'France', value: 540 },
-                { label: 'Germany', value: 580 },
-                { label: 'South Korea', value: 690 },
-                { label: 'Netherlands', value: 1100 },
-                { label: 'United States', value: 1200 },
-                { label: 'United Kingdom', value: 1380 },
-              ]}
-            />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={4}>
-            <AppCurrentSubject
-              title="Current Subject"
-              chartLabels={['English', 'History', 'Physics', 'Geography', 'Chinese', 'Math']}
-              chartData={[
-                { name: 'Series 1', data: [80, 50, 30, 40, 100, 20] },
-                { name: 'Series 2', data: [20, 30, 40, 80, 20, 80] },
-                { name: 'Series 3', data: [44, 76, 78, 13, 43, 10] },
-              ]}
-              chartColors={[...Array(6)].map(() => theme.palette.text.secondary)}
-            />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={8}>
-            <AppTasks
-              title="Tasks"
-              list={[
-                { id: '1', label: 'Create FireStone Logo' },
-                { id: '2', label: 'Add SCSS and JS files if required' },
-                { id: '3', label: 'Stakeholder Meeting' },
-                { id: '4', label: 'Scoping & Estimations' },
-                { id: '5', label: 'Sprint Showcase' },
               ]}
             />
           </Grid>
