@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+	<changeSet id="20221709202027" author="Sunil">
+		<insert tableName="spaceowner">
+			<column name="emp_id" valueNumeric="2" />
+			<column name="seat_start" valueNumeric="1" />
+			<column name="seat_end" valueNumeric="20" />
+		</insert>
+		<insert tableName="spaceowner">
+			<column name="emp_id" valueNumeric="3" />
+			<column name="seat_start" valueNumeric="21" />
+			<column name="seat_end" valueNumeric="35" />
+		</insert>
+	</changeSet>
+</databaseChangeLog>

@@ -15,10 +15,10 @@ public class SpaceOwner {
     private Long id;
 
     @Column(name = "seatStart")
-    private String seatStart;
+    private int seatStart;
 
     @Column(name = "seatEnd")
-    private String seatEnd;
+    private int seatEnd;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "emp_id", referencedColumnName = "id")

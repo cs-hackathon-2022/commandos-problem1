@@ -9,11 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeDto {
-    private String fname;
-    private String lname;
-    private String password;
-    private String email;
-    private Long mobile;
-    private Long managerId;
+public class SpaceMiniDto {
+    private Long seatId;
+    private String seatName;
 }

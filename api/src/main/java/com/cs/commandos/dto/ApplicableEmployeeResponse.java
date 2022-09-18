@@ -1,19 +1,18 @@
 package com.cs.commandos.dto;
 
+import com.cs.commandos.model.Roles;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeDto {
-    private String fname;
-    private String lname;
-    private String password;
-    private String email;
-    private Long mobile;
-    private Long managerId;
+public class ApplicableEmployeeResponse {
+    private List<ApplicableEmployees> applicableEmployees;
 }

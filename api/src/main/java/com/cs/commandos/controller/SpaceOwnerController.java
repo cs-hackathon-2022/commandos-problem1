@@ -22,7 +22,7 @@ public class SpaceOwnerController {
     }
 
     @GetMapping(path = { "/space-owner/{id}" })
-    public SpaceOwner getSpaceOwner(@PathVariable("id") long id) {
+    public SpaceOwner getSpaceOwner(@PathVariable("id") Long id) {
         SpaceOwner spaceOwner = spaceOwnerService.getSpaceOwner(id);
         return spaceOwner;
     }
