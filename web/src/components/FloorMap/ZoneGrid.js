@@ -1,9 +1,10 @@
 import {useState} from "react";
 import {Box, CardContent, Card, Paper, CardHeader, Typography, Grid, Fade} from "@mui/material";
 import "../../style/Seats.css";
+import SeatBooking from "./SeatBooking";
 
 
-const floor = [
+const floorData = [
     {
         floorName:"Floor 1",
         count:200,
@@ -40,112 +41,163 @@ const floor = [
     },{
         floorName:"Floor 2",
         count:200,
+        isAvailable:true,
         zone:[
             {
                 zoneName: "A",
                 numberOfSeats:50,
                 rangeFrom:1,
                 rangeTo:50,
-                availableSeats:20
+                availableSeats:20,
+                isAvailable:true,
             },
             {
                 zoneName: "B",
                 numberOfSeats:50,
                 rangeFrom:51,
                 rangeTo:100,
-                availableSeats:20
+                availableSeats:20,
+                isAvailable:true,
             },{
                 zoneName: "C",
                 numberOfSeats:50,
                 rangeFrom:101,
                 rangeTo:150,
-                availableSeats:20
+                availableSeats:20,
+                isAvailable:true,
             },
             {
                 zoneName: "D",
                 numberOfSeats:50,
                 rangeFrom:151,
                 rangeTo:200,
-                availableSeats:20
+                availableSeats:20,
+                isAvailable:true,
             }
         ]
     },{
         floorName:"Floor 3",
         count:200,
+        isAvailable:true,
         zone:[
             {
                 zoneName: "A",
                 numberOfSeats:50,
                 rangeFrom:1,
                 rangeTo:50,
-                availableSeats:20
+                availableSeats:20,
+                isAvailable:true,
             },
             {
                 zoneName: "B",
                 numberOfSeats:50,
                 rangeFrom:51,
                 rangeTo:100,
-                availableSeats:20
+                availableSeats:20,
+                isAvailable:true,
             },{
                 zoneName: "C",
                 numberOfSeats:50,
                 rangeFrom:101,
                 rangeTo:150,
-                availableSeats:20
+                availableSeats:20,
+                isAvailable:true,
             },
             {
                 zoneName: "D",
                 numberOfSeats:50,
                 rangeFrom:151,
                 rangeTo:200,
-                availableSeats:20
+                availableSeats:20,
+                isAvailable:false,
             }
         ]
     }
 ]
-
-
-const zone = [
-    "Z1",
-    "Z2",
-    "Z3",
-    "Z4",
-    "Z5",
-    "Z6",
-    "Z7",
-    "Z8"];
-const availableZone = ["Z3",
-    "Z4",
-    "Z5",
-    "Z6",
-    "Z7,",
-    "Z8"];
-const seatsReserved =["Z1", "Z2"];
-const initialZoneSelected= [];
+//
+// const zone = [
+//     "Z1",
+//     "Z2",
+//     "Z3",
+//     "Z4",
+//     "Z5",
+//     "Z6",
+//     "Z7",
+//     "Z8"];
+// const availableZone = ["Z3",
+//     "Z4",
+//     "Z5",
+//     "Z6",
+//     "Z7,",
+//     "Z8"];
+// const seatsReserved =["Z1", "Z2"];
+// const initialZoneSelected= [];
 
 export default function ZoneGrid(){
 
     const [floorSelected, setFloorSelected] = useState(false);
+    const [zoneSelected, setZoneSelected] = useState(false);
 
-    const [zones, setZone] = useState(zone);
-    const [zonesAvailable, setZonesAvailable] = useState(availableZone);
-    const [zoneReserved, setZoneReserved] = useState(seatsReserved);
-    const [zonesSelected, setZonesSelected] = useState(initialZoneSelected);
-    const onClickData = (zone) => {
-        if (zonesSelected.indexOf(zone) <= -1) {
-            setZonesSelected([zone, ...zonesSelected]);
+    const [floors, setFloors] = useState(floorData);
+    const [floorsAvailable, setFloorsAvailable] = useState(floorData.filter(fl=>fl.isAvailable));
+    const [floorsReserved, setFloorsReserved] = useState(floorData.filter(fl=>!fl.isAvailable));
+    const [floorsSelected, setFloorsSelected] = useState([]);
+
+    const [zones, setZones] = useState([]);
+    const [zonesAvailable, setZonesAvailable] = useState([]);
+    const [zonesReserved, setZonesReserved] = useState([]);
+    const [zonesSelected, setZonesSelected] = useState([]);
+
+    const [seats, setSeats] = useState([]);
+
+    const onFloorClickData = (flr) => {
+        let isPresent = floorsSelected.some(fs => fs.floorName === flr.floorName)
+        if (!isPresent) {
+            setFloorsSelected([flr]);
+            setZones([...flr.zone])
+            setZonesAvailable(flr.zone.filter(zo=>zo.isAvailable))
+            setZonesReserved(flr.zone.filter(zo=>!zo.isAvailable))
+            setZonesSelected([]);
+            setFloorSelected(true);
+            setZoneSelected(false);
         }else{
-            setZonesSelected(zonesSelected.filter(item=>item!=zone));
+            setFloorsSelected([]);
+            setZones([])
+            setFloorSelected(false);
+        }
+    }
+
+    const onZoneClickData = (zone) => {
+        let isPresent = zones.some(zn => zn.zoneName === zone.zoneName)
+        if (!isPresent) {
+            setZonesSelected([zone]);
+            setZoneSelected(true);
+        }else{
+            setZonesSelected([]);
+            setZoneSelected(false);
         }
     }
 
 
-
-    const getClass = (selected,reservedSeat, site)=>{
-        if(selected.indexOf(site) > -1){
+    const getFlrClass = (selected,reservedSeat, site)=>{
+        let flrPresent = selected.some(flr => flr.floorName === site.floorName);
+        let flrRes = reservedSeat.some(flr => flr.floorName === site.floorName)
+        if(flrPresent){
             return "selected";
         }
-        if(reservedSeat.indexOf(site) > -1){
+        if(flrRes){
+            return "reserved";
+        }
+        return "available";
+    }
+
+    const getZoneClass = (selected,reservedSeat, site)=>{
+        let zonPresent = selected.some(zon => zon.zoneName === site.zoneName);
+        let zonRes = reservedSeat.some(zon => zon.zoneName === site.zoneName)
+        if(zonPresent){
+            return "selected";
+        }
+        if(zonRes){
             return "reserved";
         }
         return "available";
@@ -153,31 +205,31 @@ export default function ZoneGrid(){
 
     return (
         <Grid>
-            <Grid xs={10} md={10} lg={12}>
+            <Grid item xs={10} md={10} lg={12}>
                 <Fade in={true} {...({ timeout: 2000 })}>
-            <Card>
-                <CardHeader title={"Floor Selector"} />
-                <CardContent>
-                    <Box sx={{
-                        display: 'grid',
-                        gap: 5,
-                        gridTemplateColumns: 'repeat(10, 1fr)',
-                    }}>
-                        {floor.map((floor) => (
-                            <Paper elevation={4} className={getClass(zonesSelected, zoneReserved, floor)} key={floor.floorName} variant="outlined"
-                                   sx={{ py: 5, textAlign: 'center' }} onClick={()=>onClickData(floor.floorName)}>
-                                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                    {floor.floorName}
-                                </Typography>
-                            </Paper>
-                        ))}
-                    </Box>
-                </CardContent>
-            </Card>
+                    <Card>
+                        <CardHeader title={"Floor Selector"} />
+                        <CardContent>
+                            <Box sx={{
+                                display: 'grid',
+                                gap: 5,
+                                gridTemplateColumns: 'repeat(10, 1fr)',
+                            }}>
+                                {floors.map((floor) => (
+                                    <Paper elevation={0} className={getFlrClass(floorsSelected, floorsReserved, floor)} key={floor.floorName} variant="outlined"
+                                           sx={{ py: 5, textAlign: 'center' }} onClick={()=>onFloorClickData(floor)}>
+                                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                                            {floor.floorName}
+                                        </Typography>
+                                    </Paper>
+                                ))}
+                            </Box>
+                        </CardContent>
+                    </Card>
                 </Fade>
         </Grid>
-        <Grid xs={10} md={10} lg={12} hidden={!floorSelected}>
-            <Fade in={true} {...({ timeout: 2000 })}>
+        <Grid item xs={10} md={10} lg={12} hidden={!floorSelected}>
+            <Fade in={floorSelected} {...({ timeout: 2000 })}>
             <Card>
                 <CardHeader title={"Zone Selector"} />
                 <CardContent>
@@ -186,11 +238,11 @@ export default function ZoneGrid(){
                         gap: 5,
                         gridTemplateColumns: 'repeat(10, 1fr)',
                     }}>
-                        {zones.map((site) => (
-                            <Paper elevation={10} className={getClass(zonesSelected, zoneReserved, site)} key={site} variant="outlined"
-                                   sx={{ py: 5, textAlign: 'center' }} onClick={()=>onClickData(site)}>
+                        {zones.map((zone) => (
+                            <Paper elevation={0} className={getZoneClass(zonesSelected, zonesReserved, zone)} key={zone.zoneName} variant="outlined"
+                                   sx={{ py: 5, textAlign: 'center' }} onClick={()=>onZoneClickData(zone)}>
                                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                    {site}
+                                    {zone.zoneName}
                                 </Typography>
                             </Paper>
                         ))}
@@ -199,6 +251,15 @@ export default function ZoneGrid(){
             </Card>
             </Fade>
         </Grid>
+            <Grid item xs={10} md={10} lg={12} hidden={!zoneSelected}>
+                <Fade in={zoneSelected} {...({ timeout: 2000 })}>
+                    <Card>
+                        <CardContent>
+                            <SeatBooking/>
+                        </CardContent>
+                    </Card>
+                </Fade>
+            </Grid>
         </Grid>
     );
 
