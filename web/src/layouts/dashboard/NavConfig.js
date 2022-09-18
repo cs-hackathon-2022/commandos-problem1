@@ -48,15 +48,14 @@ const navConfig = [
     visible: false
   }
 ];
-function checkIfScreenShouldBeVisible(item,employeeData){
+function checkIfScreenShouldBeVisible(item,role){
   let isVisible = item.visible;
   if(item.title === 'dashboard'){
-    // TODO: check if user is logged in
     const isUserLoggedIn = sessionStorage.getItem('isUserLoggedIn')
     isVisible = isUserLoggedIn
   }
   if(item.title === 'take-action' || item.title === 'allocate-space'){
-    if(employeeData.role === 'space-manager' || employeeData.role === 'space-owner'){
+    if(role === 'space manager' || role === 'space owner'){
       isVisible = true
     }
   }
@@ -64,11 +63,11 @@ function checkIfScreenShouldBeVisible(item,employeeData){
   return isVisible
 }
 
-export function createNavConfig(employeeData){
+export function createNavConfig(role){
   const mNavConfig =  navConfig.map((item)=>{
     return {
       ...item,
-      visible: checkIfScreenShouldBeVisible(item,employeeData)
+      visible: checkIfScreenShouldBeVisible(item,role)
     }
   })
   return mNavConfig
