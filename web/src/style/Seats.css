@@ -19,11 +19,6 @@ h1 {
     margin: 5px;
 }
 
-.grid td:hover {
-    opacity: 0.7;
-    cursor: pointer;
-}
-
 .reserved {
     background: rgba(70, 54, 54, 0.18);
     color: #fff;
@@ -38,19 +33,20 @@ h1 {
 }
 
 .reserved::after {
-    content: "R";
-}
-
-.selected::after {
-    content: "S";
-}
-
-.available::after {
-    content: "A";
+    color: chocolate;
 }
 
 .available {
-    color: rgba(51, 51, 51, 0.87);
+    content: "A";
+    background: #16a8ec;
+    color: rgba(0, 0, 0, 0.87);
+    border: 2px solid #1648ec !important;
+    display: inline-block;
+}
+
+.available:hover {
+    opacity: 0.7;
+    cursor: pointer;
 }
 
 li {

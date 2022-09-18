@@ -1,11 +1,12 @@
 import React from "react";
 import "../../style/Seats.css";
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import {experimentalStyled as styled} from "@mui/material/styles";
-import ZoneGrid from "./SeatGrid";
-
+import {Button, TextField} from "@mui/material";
+import {AppTrafficBySite} from "../../sections/@dashboard/app";
+import DateFnsUtils from '@date-io/date-fns';
+import {DateTimePicker} from "@mui/lab";
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -126,9 +127,7 @@ class SeatBooking extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>Floor Map</h1>
-                <ZoneGrid />
+            <Grid>
                 <DrawGrid
                     seat={this.state.seat}
                     available={this.state.seatAvailable}
@@ -138,58 +137,35 @@ class SeatBooking extends React.Component {
                     checktrue={this.checktrue.bind(this)}
                     handleSubmited={this.handleSubmited.bind(this)}
                 />
-            </div>
+            </Grid>
         );
     }
 }
 
 class DrawGrid extends React.Component {
+    handleChange(){
+        console.log("Date Pciker")
+    }
     render() {
         return (
-            <Grid container >
-                <Grid item >
-                    <h2 />
-                        <table className="grid" >
-                            <tbody>
-                            <tr>
-                                {this.props.seat.map(row => (
-                                    <td
-                                        className={
-                                            this.props.selected.indexOf(row) > -1
-                                                ? "reserved"
-                                                : this.props.reserved.indexOf(row) > -1
-                                                    ? "selected"
-                                                    : "available"
-                                        }
-                                        key={row}
-                                        onClick={
-                                            this.props.checktrue(row)
-                                                ? e => this.onClickSeat(row)
-                                                : null
-                                        }
-                                    >
-                                        {row}{" "}
-                                    </td>
-                                ))}
-                            </tr>
-                            </tbody>
-                        </table>
-                        <button
-                            type="button"
-                            className="btn-success btnmargin"
-                            onClick={() => this.props.handleSubmited()}
-                        >
-                            Confirm Booking
-                        </button>
+            <Grid>
+                <Grid>
+                <AppTrafficBySite
+                    title="Select Your Seat"
+                    list={this.props.seat}
+                    checktrue={this.props.checktrue}
+                    onClickData={this.props.onClickData}
+                    selected={this.props.selected}
+                    reservedSeat={this.props.reserved}
+                />
+                </Grid>
+                <Grid  >
+                    <Button size="large" variant="contained" onClick={() => this.props.handleSubmited()}>Confirm Booking</Button>
                 </Grid>
             </Grid>
 
 
         );
-    }
-
-    onClickSeat(seat) {
-        this.props.onClickData(seat);
     }
 }
 export default SeatBooking;
