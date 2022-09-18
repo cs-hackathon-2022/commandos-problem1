@@ -39,7 +39,7 @@ export default function BookSeat() {
       <Page title="Book Seat">
         <Container maxWidth="xl">
           <Typography variant="h4" sx={{ mb: 5 }}>
-           Request Space
+              Book Seat
           </Typography>
 
           <Grid container spacing={3}>
