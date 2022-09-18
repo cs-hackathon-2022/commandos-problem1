@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import {useEffect, useState} from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 // material
 import { styled } from '@mui/material/styles';
@@ -13,7 +13,9 @@ import Logo from '../../components/Logo';
 import Scrollbar from '../../components/Scrollbar';
 import NavSection from '../../components/NavSection';
 //
-import navConfig from './NavConfig';
+import {createNavConfig} from './NavConfig';
+import Api, {BASE_SERVER_URL} from "../../api/Api";
+import {employeeConfig} from "./EmployeeConfig";
 
 // ----------------------------------------------------------------------
 
@@ -43,6 +45,7 @@ DashboardSidebar.propTypes = {
 
 export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   const { pathname } = useLocation();
+  const [navConfig,setNavConfig] = useState([])
 
   const isDesktop = useResponsive('up', 'lg');
 
@@ -52,6 +55,18 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
+
+  useEffect(()=>{
+    const id = '1234';  //TODO: to be fetched and stored on login
+    const url = BASE_SERVER_URL + `/employee/${id}`
+    // const response = await Api.axiosGetApi(url);
+    const response = employeeConfig.data;
+    if(response){
+      let mNavConfig = []
+      mNavConfig = createNavConfig(response)
+      setNavConfig(mNavConfig)
+    }
+  },[])
 
   const renderContent = (
     <Scrollbar

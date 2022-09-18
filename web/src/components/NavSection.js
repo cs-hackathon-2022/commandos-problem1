@@ -32,9 +32,10 @@ const ListItemIconStyle = styled(ListItemIcon)({
 NavItem.propTypes = {
   item: PropTypes.object,
   active: PropTypes.func,
+  visible: PropTypes.bool
 };
 
-function NavItem({ item, active }) {
+function NavItem({ item, active, visible }) {
   const theme = useTheme();
 
   const isActiveRoot = active(item.path);
@@ -120,19 +121,22 @@ function NavItem({ item, active }) {
     );
   }
 
-  return (
-    <ListItemStyle
-      component={RouterLink}
-      to={path}
-      sx={{
-        ...(isActiveRoot && activeRootStyle),
-      }}
-    >
-      <ListItemIconStyle>{icon && icon}</ListItemIconStyle>
-      <ListItemText disableTypography primary={title} />
-      {info && info}
-    </ListItemStyle>
-  );
+  if(visible) {
+    return (
+        <ListItemStyle
+            component={RouterLink}
+            to={path}
+            sx={{
+              ...(isActiveRoot && activeRootStyle),
+            }}
+        >
+          <ListItemIconStyle>{icon && icon}</ListItemIconStyle>
+          <ListItemText disableTypography primary={title}/>
+          {info && info}
+        </ListItemStyle>
+    )
+  }
+  return null;
 }
 
 NavSection.propTypes = {
@@ -147,8 +151,8 @@ export default function NavSection({ navConfig, ...other }) {
   return (
     <Box {...other}>
       <List disablePadding sx={{ p: 1 }}>
-        {navConfig.map((item) => (
-          <NavItem key={item.title} item={item} active={match} />
+        {navConfig && navConfig.length > 0 && navConfig.map((item) => (
+          <NavItem key={item.title} item={item} active={match} visible={item.visible} />
         ))}
       </List>
     </Box>
