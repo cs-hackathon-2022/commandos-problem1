@@ -36,6 +36,10 @@ public class SpaceMasterService {
         return true;
     }
 
+    public List<SpaceMaster> getSpaceInRange(long startSpaceId, long endSpaceId) {
+        return spaceMasterRepository.findByIdBetween(startSpaceId, endSpaceId);
+    }
+
     public EmployeeApplicableSpaceDto getSpaceDetails(long startSpaceId, long endSpaceId) {
         List<SpaceMaster> spaces = spaceMasterRepository.findByIdBetween(startSpaceId, endSpaceId);
         EmployeeApplicableSpaceDto employeeApplicableSpaceDto = new EmployeeApplicableSpaceDto();
@@ -56,6 +60,10 @@ public class SpaceMasterService {
 
     public List<FloorDto> getCompleteBuildingPlan() {
         List<SpaceMaster> masterSpace = getAllSpaces();
+        return getCompleteBuildingPlan(masterSpace);
+    }
+
+    public List<FloorDto> getCompleteBuildingPlan(List<SpaceMaster> masterSpace) {
 
         Map<String, List<SpaceMaster>> floorPlan = masterSpace.parallelStream().collect(Collectors.groupingBy(SpaceMaster::getFloor));
 
