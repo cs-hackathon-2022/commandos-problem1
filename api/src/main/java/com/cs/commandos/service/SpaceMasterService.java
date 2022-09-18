@@ -74,6 +74,7 @@ public class SpaceMasterService {
             int floorSeatCount = 0;
             boolean isFloorAvailable = false;
 
+
             FloorDto floorDto = new FloorDto();
 
             Map<String, List<SpaceMaster>> zonePlan = entry.getValue().parallelStream().collect(Collectors.groupingBy(SpaceMaster::getZone));
@@ -82,7 +83,9 @@ public class SpaceMasterService {
 
             for(Map.Entry<String, List<SpaceMaster>> zoneDetails : zonePlan.entrySet()) {
 
-                ZoneDto zoneDto = new ZoneDto();
+                boolean isZoneAvailable = false;
+
+                    ZoneDto zoneDto = new ZoneDto();
 
                     List<SpaceMaster> spaceMasterList = zoneDetails.getValue();
                     zoneDto.setZoneName(zoneDetails.getKey());
@@ -100,10 +103,15 @@ public class SpaceMasterService {
                         isFloorAvailable = true;
                     }
 
+                    if(totalAvailableSeats.size() >= 1) {
+                        isZoneAvailable = true;
+                    }
+
                     zoneDto.setAvailableSeatCount(totalAvailableSeats.size());
                     zoneDto.setAvailableSeats(totalAvailableSeats);
                     zoneDto.setReservedSeats(totalReservedSeats);
                     zoneDto.setReservedSeatCount(totalReservedSeats.size());
+                    zoneDto.setZoneAvailable(isZoneAvailable);
                     zoneDtoList.add(zoneDto);
                     floorSeatCount += totalReservedSeats.size() + totalAvailableSeats.size();
             }

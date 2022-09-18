@@ -19,5 +19,6 @@ public class ZoneDto {
     private int rangeTo;
     private int availableSeatCount;
     private int reservedSeatCount;
+    private boolean isZoneAvailable;
 
 }
