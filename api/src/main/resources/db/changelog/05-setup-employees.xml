@@ -12,7 +12,7 @@
 			<column name="email" value="raj@gmail.com" />
 			<column name="password" value="User123" />
 			<column name="role_id" valueNumeric="1" />
-			<column name="team_id" valueNumeric="1" />
+			<column name="manager_id" valueNumeric="1" />
 		
 		</insert>
 		<insert tableName="employee">
@@ -21,7 +21,7 @@
 			<column name="email" value="manish@gmail.com" />
 			<column name="password" value="User123" />
 			<column name="role_id" valueNumeric="2" />
-			<column name="team_id" valueNumeric="1" />
+			<column name="manager_id" valueNumeric="1" />
 		
 		</insert>
 		<insert tableName="employee">
@@ -30,7 +30,7 @@
 			<column name="email" value="sachin.shelar@gmail.com" />
 			<column name="password" value="User123" />
 			<column name="role_id" valueNumeric="2" />
-			<column name="team_id" valueNumeric="1" />
+			<column name="manager_id" valueNumeric="1" />
 		
 		</insert>
 
@@ -40,7 +40,7 @@
 			<column name="email" value="sunil.patil@gmail.com" />
 			<column name="password" value="User123" />
 			<column name="role_id" valueNumeric="3" />
-			<column name="team_id" valueNumeric="2" />
+			<column name="manager_id" valueNumeric="2" />
 		
 		</insert>
 		<insert tableName="employee">
@@ -49,7 +49,7 @@
 			<column name="email" value="mangesh@gmail.com" />
 			<column name="password" value="User123" />
 			<column name="role_id" valueNumeric="3" />
-			<column name="team_id" valueNumeric="2" />
+			<column name="manager_id" valueNumeric="2" />
 		
 		</insert>
 		<insert tableName="employee">
@@ -58,7 +58,7 @@
 			<column name="email" value="shubham@gmail.com" />
 			<column name="password" value="User123" />
 			<column name="role_id" valueNumeric="3" />
-			<column name="team_id" valueNumeric="2" />
+			<column name="manager_id" valueNumeric="2" />
 		
 		</insert>
 		<insert tableName="employee">
@@ -67,7 +67,7 @@
 			<column name="email" value="avani@gmail.com" />
 			<column name="password" value="User123" />
 			<column name="role_id" valueNumeric="3" />
-			<column name="team_id" valueNumeric="2" />
+			<column name="manager_id" valueNumeric="2" />
 		
 		</insert>
 		<insert tableName="employee">
@@ -76,7 +76,7 @@
 			<column name="email" value="ashish@gmail.com" />
 			<column name="password" value="User123" />
 			<column name="role_id" valueNumeric="3" />
-			<column name="team_id" valueNumeric="2" />
+			<column name="manager_id" valueNumeric="2" />
 		
 		</insert>
 		<insert tableName="employee">
@@ -85,7 +85,7 @@
 			<column name="email" value="akshay@gmail.com" />
 			<column name="password" value="User123" />
 			<column name="role_id" valueNumeric="3" />
-			<column name="team_id" valueNumeric="2" />
+			<column name="manager_id" valueNumeric="2" />
 		
 		</insert>
 		<insert tableName="employee">
@@ -94,7 +94,7 @@
 			<column name="email" value="akshay.ghawate@gmail.com" />
 			<column name="password" value="User123" />
 			<column name="role_id" valueNumeric="3" />
-			<column name="team_id" valueNumeric="3" />
+			<column name="manager_id" valueNumeric="3" />
 		
 		</insert>
 		<insert tableName="employee">
@@ -103,7 +103,7 @@
 			<column name="email" value="ajay@gmail.com" />
 			<column name="password" value="User123" />
 			<column name="role_id" valueNumeric="3" />
-			<column name="team_id" valueNumeric="3" />
+			<column name="manager_id" valueNumeric="3" />
 		
 		</insert>
 		<insert tableName="employee">
@@ -112,7 +112,7 @@
 			<column name="email" value="sushant@gmail.com" />
 			<column name="password" value="User123" />
 			<column name="role_id" valueNumeric="3" />
-			<column name="team_id" valueNumeric="3" />
+			<column name="manager_id" valueNumeric="3" />
 		
 		</insert>
 	</changeSet>

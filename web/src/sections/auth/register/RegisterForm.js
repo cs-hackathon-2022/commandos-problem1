@@ -43,7 +43,8 @@ export default function RegisterForm() {
   } = methods;
 
   const onSubmit = async () => {
-    navigate('/dashboard', { replace: true });
+    sessionStorage.setItem('isUserLoggedIn', 'Y');
+    navigate('/dashboard/app', { replace: true });
   };
 
   return (

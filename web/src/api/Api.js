@@ -1,5 +1,6 @@
 import axios from "axios";
-
+import {employeeConfig} from "../layouts/dashboard/EmployeeConfig";
+export const BASE_SERVER_URL = 'http://localhost:8080/api';
  export default class Api {
 
      static  axiosPostApi(requestURL, paramObject, resolve, reject ){

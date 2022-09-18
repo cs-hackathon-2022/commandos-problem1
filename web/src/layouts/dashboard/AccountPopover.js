@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import {Link as RouterLink, useNavigate} from 'react-router-dom';
 // @mui
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton } from '@mui/material';
@@ -14,16 +14,11 @@ const MENU_OPTIONS = [
   {
     label: 'Home',
     icon: 'eva:home-fill',
-    linkTo: '/',
+    linkTo: '/dashboard/app',
   },
   {
     label: 'Profile',
     icon: 'eva:person-fill',
-    linkTo: '#',
-  },
-  {
-    label: 'Settings',
-    icon: 'eva:settings-2-fill',
     linkTo: '#',
   },
 ];
@@ -32,6 +27,7 @@ const MENU_OPTIONS = [
 
 export default function AccountPopover() {
   const anchorRef = useRef(null);
+    const navigate = useNavigate();
 
   const [open, setOpen] = useState(null);
 
@@ -41,6 +37,8 @@ export default function AccountPopover() {
 
   const handleClose = () => {
     setOpen(null);
+    sessionStorage.setItem('isUserLoggedIn','N')
+      navigate('/login')
   };
 
   return (
