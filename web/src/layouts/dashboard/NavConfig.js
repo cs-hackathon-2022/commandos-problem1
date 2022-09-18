@@ -4,7 +4,7 @@ import Iconify from '../../components/Iconify';
 // ----------------------------------------------------------------------
 
 const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
-let navConfig = [
+const navConfig = [
   {
     title: 'dashboard',
     path: '/dashboard/app',
@@ -57,7 +57,7 @@ let navConfig = [
 function checkIfScreenShouldBeVisible(item,employeeData){
   let isVisible = item.visible;
   if(item.title === 'dashboard'){
-    //TODO: check if user is logged in
+    // TODO: check if user is logged in
     const isUserLoggedIn = sessionStorage.getItem('isUserLoggedIn')
     isVisible = isUserLoggedIn
   }
