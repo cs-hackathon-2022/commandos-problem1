@@ -48,6 +48,8 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   const [navConfig,setNavConfig] = useState([])
 
   const isDesktop = useResponsive('up', 'lg');
+  const name = sessionStorage.getItem('employeeName')
+  const role = sessionStorage.getItem('employeeRole')
 
   useEffect(() => {
     if (isOpenSidebar) {
@@ -57,20 +59,11 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   }, [pathname]);
 
   useEffect(()=>{
-    const id = '1234';
-    //
-    // TODO: to be fetched and stored on login
-    const url = `/employee/${id}`
-    // const response = await Api.axiosGetApi(url);
-    const response = employeeConfig.data;
-    if(response){
-      let mNavConfig = []
-      mNavConfig = createNavConfig(response)
+    let mNavConfig = []
+      mNavConfig = createNavConfig(role)
       setNavConfig(mNavConfig)
-    }
-  },[])
-  const name = sessionStorage.getItem('employeeName')
-  const role = sessionStorage.getItem('employeeRole')
+  },[role])
+
 
   const renderContent = (
     <Scrollbar

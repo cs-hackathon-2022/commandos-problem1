@@ -38,6 +38,7 @@ export default function AccountPopover() {
   const handleClose = () => {
     setOpen(null);
     sessionStorage.setItem('isUserLoggedIn','N')
+      sessionStorage.clear();
       navigate('/login')
   };
     const name = sessionStorage.getItem('employeeName')
