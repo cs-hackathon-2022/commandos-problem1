@@ -16,8 +16,10 @@ import BookSeat from "./pages/BookSeat";
 // ----------------------------------------------------------------------
 
 export default function Router() {
-  return useRoutes([
-    {
+  let routes = []
+  const isUserLoggedIn = sessionStorage.getItem('isUserLoggedIn')
+  if(isUserLoggedIn){
+    routes.push({
       path: '/dashboard',
       element: <DashboardLayout />,
       children: [
@@ -29,22 +31,22 @@ export default function Router() {
         { path: 'login', element: <Login />},
         { path: 'register', element: <Register />},
       ],
-    },
-
-    {
-      path: '/',
-      element: <LogoOnlyLayout />,
-      children: [
-        { path: '/', element: <Navigate to="/dashboard/app" /> },
-        { path: '/login', element: <Navigate to="/dashboard/login" /> },
-        { path: '/register', element: <Navigate to="/dashboard/register" /> },
-        { path: '404', element: <NotFound /> },
-        { path: '*', element: <Navigate to="/404" /> },
-      ],
-    },
+    })
+  }
+  routes = [...routes,{
+    path: '/',
+    element: <LogoOnlyLayout />,
+    children: [
+      { path: '/', element: <Login /> },
+      { path: '/login', element: <Login /> },
+      { path: '/register', element: <Register /> },
+      { path: '404', element: <NotFound /> },
+      { path: '*', element: <Navigate to="/404" /> },
+    ],
+  },
     {
       path: '*',
       element: <Navigate to="/404" replace />,
-    },
-  ]);
+    },]
+  return useRoutes(routes);
 }
