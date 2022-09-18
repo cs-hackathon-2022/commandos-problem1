@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -12,7 +14,8 @@ import lombok.Setter;
 public class ZoneDto {
     private String zoneName;
     private int numberOfSeats;
-    private int rangeFrom;
+    private List<SpaceMiniDto> reservedSeats;
+    private List<SpaceMiniDto> availableSeats;
     private int rangeTo;
-    private int availableSeats;
+    private int availableSeatCount;
 }

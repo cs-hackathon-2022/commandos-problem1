@@ -1,6 +1,7 @@
 package com.cs.commandos.controller;
 
 import com.cs.commandos.dto.EmployeeApplicableSpaceDto;
+import com.cs.commandos.dto.FloorDto;
 import com.cs.commandos.model.Floor;
 import com.cs.commandos.service.FloorService;
 import com.cs.commandos.service.SpaceMasterService;
@@ -22,6 +23,11 @@ public class SpaceMasterController {
 	@GetMapping("")
 	public EmployeeApplicableSpaceDto getFloors(@RequestParam Long startId, @RequestParam Long endId) {
 		return spaceMasterService.getSpaceDetails(startId, endId);
+	}
+
+	@GetMapping("/plan")
+	public List<FloorDto> getBuildingPlan() {
+		return spaceMasterService.getCompleteBuildingPlan();
 	}
 
 }
