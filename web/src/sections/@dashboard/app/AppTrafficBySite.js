@@ -47,7 +47,7 @@ export default function AppTrafficBySite({ title, subheader, list, checktrue, on
                   gridTemplateColumns: 'repeat(10, 1fr)',
               }}>
               {list.map((site) => (
-                  <Paper className={getClass(selected, reservedSeat, site)} key={site} variant="outlined" sx={{ py: 5, textAlign: 'center' }} onClick={()=>onClickSeat(site)}>
+                  <Paper elevation={0} className={getClass(selected, reservedSeat, site)} key={site} variant="outlined" sx={{ py: 5, textAlign: 'center' }} onClick={()=>onClickSeat(site)}>
                       <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                           {site}
                       </Typography>

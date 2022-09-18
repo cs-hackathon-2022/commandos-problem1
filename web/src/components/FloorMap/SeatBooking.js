@@ -141,9 +141,6 @@ class SeatBooking extends React.Component {
 }
 
 class DrawGrid extends React.Component {
-    handleChange(){
-        console.log("Date Pciker")
-    }
     render() {
         return (
             <Grid>
