@@ -27,7 +27,7 @@ public class EmployeeController {
         return employee;
     }
 
-    @PutMapping(path = {"/register"})
+    @PostMapping(path = {"/register"})
     public boolean registerEmployee(@RequestBody EmployeeDto employee) {
         return employeeService.registerService(employee);
     }
