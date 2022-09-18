@@ -13,4 +13,5 @@
 	-->
 	<include file="classpath:/db/changelog/05-setup-employees.xml" />
 	<include file="classpath:/db/changelog/07-create-space-master.xml" />
+	<include file="classpath:/db/changelog/08-setup-space-owners.xml" />
 </databaseChangeLog>

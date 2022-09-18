@@ -1,11 +1,9 @@
 package com.cs.commandos.service;
 
-import com.cs.commandos.dto.ApplicableEmployeeResponse;
-import com.cs.commandos.dto.ApplicableEmployees;
-import com.cs.commandos.dto.EmployeeDto;
-import com.cs.commandos.dto.LoginDto;
+import com.cs.commandos.dto.*;
 import com.cs.commandos.model.Employee;
 import com.cs.commandos.model.Roles;
+import com.cs.commandos.model.SpaceOwner;
 import com.cs.commandos.repository.EmployeeRepository;
 import com.cs.commandos.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +20,15 @@ public class EmployeeService {
 
 	@Autowired
     private EmployeeRepository employeeRepository;
+
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private SpaceMasterService spaceMasterService;
+
+    @Autowired
+    private SpaceOwnerService spaceOwnerService;
 
     public List<Employee> getEmployees() {
         return employeeRepository.findAll();
@@ -98,5 +103,13 @@ public class EmployeeService {
         ApplicableEmployeeResponse response = new ApplicableEmployeeResponse();
         response.setApplicableEmployees(result);
         return response;
+    }
+
+    public EmployeeApplicableSpaceDto getApplicableSpaces(Long empId) {
+        Employee employee = employeeRepository.findById(empId).get();
+        SpaceOwner spaceOwner = spaceOwnerService.getSpaceOwner(employee.getManagerId());
+        EmployeeApplicableSpaceDto employeeApplicableSpaceDto =  spaceMasterService.getSpaceDetails(spaceOwner.getSeatStart(), spaceOwner.getSeatEnd());
+        return employeeApplicableSpaceDto;
+
     }
 }

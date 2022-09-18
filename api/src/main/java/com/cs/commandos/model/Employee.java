@@ -33,7 +33,7 @@ public class Employee implements Serializable {
     private Long mobile;
 
     @Column(name = "managerId")
-    private String managerId;
+    private Long managerId;
 
    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id", referencedColumnName = "id")

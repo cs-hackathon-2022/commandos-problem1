@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SpaceOwnerRepository extends JpaRepository<SpaceOwner, Long> {
 
-    public SpaceOwner findByEmployeeId(int employeeId);
+    SpaceOwner findByEmployeeId(Long employeeId);
 }

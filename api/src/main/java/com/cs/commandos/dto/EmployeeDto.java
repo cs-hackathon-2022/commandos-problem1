@@ -15,5 +15,5 @@ public class EmployeeDto {
     private String password;
     private String email;
     private Long mobile;
-    private String managerId;
+    private Long managerId;
 }

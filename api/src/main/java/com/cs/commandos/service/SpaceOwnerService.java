@@ -20,7 +20,7 @@ public class SpaceOwnerService {
         return spaceOwnerRepository.findAll();
     }
 
-    public SpaceOwner getSpaceOwner(long id) {
-        return spaceOwnerRepository.findById(id).get();
+    public SpaceOwner getSpaceOwner(Long id) {
+        return spaceOwnerRepository.findByEmployeeId(id);
     }
 }

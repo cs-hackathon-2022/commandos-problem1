@@ -3,6 +3,7 @@ package com.cs.commandos.controller;
 import java.util.List;
 
 import com.cs.commandos.dto.ApplicableEmployeeResponse;
+import com.cs.commandos.dto.EmployeeApplicableSpaceDto;
 import com.cs.commandos.dto.EmployeeDto;
 import com.cs.commandos.dto.LoginDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,12 @@ public class EmployeeController {
     @GetMapping(path = {"/spaceOwners"})
     public ApplicableEmployeeResponse fetchSpaceOwners() {
         return employeeService.fetchSpaceOwners();
+    }
+
+    /* Find the empId's manager available space area and return free/allocated spaces from the allocated range. */
+    @GetMapping(path = {"/availableSpaces/{empId}"})
+    public EmployeeApplicableSpaceDto getAvailableSpaces(@PathVariable Long empId) {
+        return employeeService.getApplicableSpaces(empId);
     }
 
 }
