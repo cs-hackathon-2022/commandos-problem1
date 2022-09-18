@@ -1,4 +1,4 @@
-package com.cs.commandos.confic;
+package com.cs.commandos.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

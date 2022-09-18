@@ -50,7 +50,7 @@ public class EmployeeController {
     }
 
     /* Find the empId's manager available space area and return free/allocated spaces from the allocated range. */
-    @GetMapping(path = {"/availableSpaces/{empId}"})
+    @GetMapping(path = {"/employee/{empId}/availableSpaces"})
     public EmployeeApplicableSpaceDto getAvailableSpaces(@PathVariable Long empId) {
         return employeeService.getApplicableSpaces(empId);
     }

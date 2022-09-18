@@ -7,6 +7,7 @@ import com.cs.commandos.repository.SpaceMasterRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import springfox.documentation.annotations.Cacheable;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +19,7 @@ public class SpaceMasterService {
     @Autowired
     private SpaceMasterRepository spaceMasterRepository;
 
+    @Cacheable("sat")
     public List<SpaceMaster> getAllSpaces() {
         return spaceMasterRepository.findAll();
     }
