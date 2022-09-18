@@ -36,7 +36,8 @@ public class EmployeeService {
     }
 
     public boolean registerService(EmployeeDto employee) {
-        if(!employeeRepository.findByEmail(employee.getEmail()).getEmail().isEmpty()) {
+        Employee userExists = Optional.ofNullable(employeeRepository.findByEmail(employee.getEmail())).orElse(null);
+        if(userExists != null) {
             return false;
         }
         Employee emp = new Employee();
