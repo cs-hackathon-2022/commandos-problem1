@@ -75,9 +75,14 @@ public class EmployeeService {
     }
 
     public ApplicableEmployeeResponse fetchSpaceOwners() {
-        ArrayList<Long> role = new ArrayList<>(Arrays.asList(1L,2L));
-        List<Employee> emp = Optional.ofNullable(employeeRepository.findAllByIdIn(role)).get();
-        return getApplicableEmployeeResponse(emp);
+        try {
+            ArrayList<Long> role = new ArrayList<>(Arrays.asList(1L,2L));
+            List<Employee> emp = Optional.ofNullable(employeeRepository.findAllByRoleIdIn(role)).get();
+            return getApplicableEmployeeResponse(emp);
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 
     private ApplicableEmployeeResponse getApplicableEmployeeResponse(List<Employee> emp) {
