@@ -22,11 +22,7 @@ const BASE_SERVER_URL = 'http://localhost:8080/api';
 
      static axiosGetApi(requestURL, resolve, reject) {
          const URL = BASE_SERVER_URL+requestURL;
-         return axios.get(URL).then((response)=>{
-             resolve(response.data);
-         }).catch((error)=>{
-             reject(error);
-         });
+         return axios.get(URL).then(res=>res)
      }
 
  }
