@@ -8,4 +8,7 @@
 	<include file="classpath:/db/changelog/01-create-dummy-table.xml" />
 	<include file="classpath:/db/changelog/02-setup-initial-data.xml" />
 	<include file="classpath:/db/changelog/03-setup-zones-data.xml" />	
+	<include file="classpath:/db/changelog/04-setup-roles.xml" />	
+	<include file="classpath:/db/changelog/06-setup-teams.xml" />
+	<include file="classpath:/db/changelog/05-setup-employees.xml" /> 
 </databaseChangeLog>

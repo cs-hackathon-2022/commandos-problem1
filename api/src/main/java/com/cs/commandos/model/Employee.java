@@ -35,4 +35,8 @@ public class Employee {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Role role;
+    
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    private Team team;
 }

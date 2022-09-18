@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+	<changeSet id="20221709202024" author="Sunil">
+		<insert tableName="role">
+			<column name="role_type" value="SPACE_MANAGER" />
+			<column name="role_code" value="SM" />
+			<column name="description"
+				value="central space manage commitee" />
+			<column name="created_on" valueDate="SYSDATETIME()" />
+			<column name="modified_on" valueDate="SYSDATETIME()" />
+		</insert>
+
+		<insert tableName="role">
+			<column name="role_type" value="SPACE_OWNER" />
+			<column name="role_code" value="SO" />
+			<column name="description"
+				value="Own some space in overall space" />
+			<column name="created_on" valueDate="SYSDATETIME()" />
+			<column name="modified_on" valueDate="SYSDATETIME()" />
+		</insert>
+		
+		<insert tableName="role">
+			<column name="role_type" value="EMPLOYEE" />
+			<column name="role_code" value="EMP" />
+			<column name="description"
+				value="Actually employee" />
+			<column name="created_on" valueDate="SYSDATETIME()" />
+			<column name="modified_on" valueDate="SYSDATETIME()" />
+		</insert>
+	</changeSet>
+</databaseChangeLog>

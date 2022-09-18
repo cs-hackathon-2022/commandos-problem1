@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+	<changeSet id="20221709202025" author="Sunil">
+		<insert tableName="employee">
+			<column name="fname" value="Raj" />
+			<column name="lname" value="Telukuntla" />
+			<column name="email" value="raj@gmail.com" />
+			<column name="password" value="User123" />
+			<column name="role_id" valueNumeric="1" />
+			<column name="team_id" valueNumeric="1" />
+		
+		</insert>
+		<insert tableName="employee">
+			<column name="fname" value="Manish" />
+			<column name="lname" value="Pandey" />
+			<column name="email" value="manish@gmail.com" />
+			<column name="password" value="User123" />
+			<column name="role_id" valueNumeric="2" />
+			<column name="team_id" valueNumeric="1" />
+		
+		</insert>
+		<insert tableName="employee">
+			<column name="fname" value="Sachin" />
+			<column name="lname" value="Shelar" />
+			<column name="email" value="sachin.shelar@gmail.com" />
+			<column name="password" value="User123" />
+			<column name="role_id" valueNumeric="2" />
+			<column name="team_id" valueNumeric="1" />
+		
+		</insert>
+
+		<insert tableName="employee">
+			<column name="fname" value="Sunil" />
+			<column name="lname" value="Patil" />
+			<column name="email" value="sunil.patil@gmail.com" />
+			<column name="password" value="User123" />
+			<column name="role_id" valueNumeric="3" />
+			<column name="team_id" valueNumeric="2" />
+		
+		</insert>
+		<insert tableName="employee">
+			<column name="fname" value="Mangesh" />
+			<column name="lname" value="Shinde" />
+			<column name="email" value="mangesh@gmail.com" />
+			<column name="password" value="User123" />
+			<column name="role_id" valueNumeric="3" />
+			<column name="team_id" valueNumeric="2" />
+		
+		</insert>
+		<insert tableName="employee">
+			<column name="fname" value="Shubham" />
+			<column name="lname" value="Mishra" />
+			<column name="email" value="shubham@gmail.com" />
+			<column name="password" value="User123" />
+			<column name="role_id" valueNumeric="3" />
+			<column name="team_id" valueNumeric="2" />
+		
+		</insert>
+		<insert tableName="employee">
+			<column name="fname" value="Avani" />
+			<column name="lname" value="Kothari" />
+			<column name="email" value="avani@gmail.com" />
+			<column name="password" value="User123" />
+			<column name="role_id" valueNumeric="3" />
+			<column name="team_id" valueNumeric="2" />
+		
+		</insert>
+		<insert tableName="employee">
+			<column name="fname" value="Ashish" />
+			<column name="lname" value="Kardile" />
+			<column name="email" value="ashish@gmail.com" />
+			<column name="password" value="User123" />
+			<column name="role_id" valueNumeric="3" />
+			<column name="team_id" valueNumeric="2" />
+		
+		</insert>
+		<insert tableName="employee">
+			<column name="fname" value="Akshay" />
+			<column name="lname" value="Palve" />
+			<column name="email" value="akshay@gmail.com" />
+			<column name="password" value="User123" />
+			<column name="role_id" valueNumeric="3" />
+			<column name="team_id" valueNumeric="2" />
+		
+		</insert>
+		<insert tableName="employee">
+			<column name="fname" value="Akshay" />
+			<column name="lname" value="Ghawate" />
+			<column name="email" value="akshay.ghawate@gmail.com" />
+			<column name="password" value="User123" />
+			<column name="role_id" valueNumeric="3" />
+			<column name="team_id" valueNumeric="3" />
+		
+		</insert>
+		<insert tableName="employee">
+			<column name="fname" value="Ajay" />
+			<column name="lname" value="Porwal" />
+			<column name="email" value="ajay@gmail.com" />
+			<column name="password" value="User123" />
+			<column name="role_id" valueNumeric="3" />
+			<column name="team_id" valueNumeric="3" />
+		
+		</insert>
+		<insert tableName="employee">
+			<column name="fname" value="Sushant" />
+			<column name="lname" value="Pawar" />
+			<column name="email" value="sushant@gmail.com" />
+			<column name="password" value="User123" />
+			<column name="role_id" valueNumeric="3" />
+			<column name="team_id" valueNumeric="3" />
+		
+		</insert>
+	</changeSet>
+</databaseChangeLog>
